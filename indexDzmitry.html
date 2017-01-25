@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>Auth Firebase</title>
+    <script src="https://momentjs.com/downloads/moment.js">
+    </script>
+    <script
+    src="https://code.jquery.com/jquery-3.1.1.js"
+    integrity="sha256-16cdPddA6VdVInumRGo6IbivbERE8p7CQR3HzTBuELA="
+    crossorigin="anonymous"></script>
+    <style>
+      .hide{
+        display: none;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      
+      <input id="txtEmail" type="email" placeholder="Email">
+      <input id="txtPassword" type="password" placeholder="password">
+      <button id="btnLogin" class="btn btn-action">
+      Log In
+      </button>
+      <button id="btnSignUp" class="btn btn-secondary" >
+      Sign Up
+      </button>
+      <button id="btnLogout" class="btn btn-action hide">
+      Log Out
+      </button>
+    </div>
+    <div class="info">
+    <input type="search"  class='search' id="search" placeholder="zip code">
+    <button id="lookInfo">Explore the area</button>
+  <section id="weathers"></section>
+  </div>
+  <script src="https://www.gstatic.com/firebasejs/3.6.5/firebase.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
