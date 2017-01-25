@@ -13,6 +13,7 @@ var user = database.ref('/user');
 var newUser = database.ref('/newuser');
 var email;
 var pass;
+var movies;
 
 user.on('child_added', function(snap){
           email =  snap.val().email
@@ -110,6 +111,7 @@ var pos;
 var weatherReport;
 var lowtemp;
 var eventsNames = [];
+$('.draggable').hide();
 $('.info').hide()
 $('#lookInfo').on('click', function() {
 
@@ -167,16 +169,6 @@ function checkWeather(lat, lng) {
 
       for (i in arrWeathers) {
 
-
-        // console.log(arrWeathers[i]);
-
-        // console.log(arrWeathers[i].date.epoch);
-        // console.log(arrWeathers[i].date.monthname_short);
-        // console.log(arrWeathers[i].date.day);
-        // console.log(arrWeathers[i].conditions);
-        // console.log(arrWeathers[i].low.fahrenheit);
-        // console.log(arrWeathers[i].high.fahrenheit); 
-        // console.log(arrWeathers[i].high.icon_url);
         if (i <= 4) {
           date = `${arrWeathers[i].date.monthname_short } ${arrWeathers[i].date.day}`
             // console.log(date)
@@ -208,9 +200,7 @@ function checkWeather(lat, lng) {
 
           })
           .done(function(data) {
-            // console.log(data)
-            // console.log(data.data)
-            // console.log("success");
+
             var events = data.data;
             for (i in events) {
 
@@ -224,9 +214,7 @@ function checkWeather(lat, lng) {
 
                   console.log(events[i].link)
                   console.log(events[i].name)
-                    // console.log(events[i].venue.address_1)
-                    // console.log(events[i].venue.name)
-                    // console.log("---------------------------------")
+
 
                   _this.append(`<div class='meetupEvent'> 
                                           <p>Name: ${events[i].name}</p>
@@ -262,6 +250,74 @@ function checkWeather(lat, lng) {
     .always(function() {
 
     });
-}
 
-console.log("ready!");
+    $('.draggable').show();
+}
+    var settings = {
+      "async": true,
+      "crossDomain": true,
+      "url": "https://api.themoviedb.org/3/movie/popular?page=1&language=en-US&api_key=65df1022a70a9ad63fbfa028ad61d139",
+      "method": "GET"
+    }
+
+    $.ajax(settings).done(function (response) {
+               var arrayOfmovies = []
+            while (arrayOfmovies.length < 5) {
+            var randomMovie = Math.floor(Math.random()*response.results.length)
+             arrayOfmovies.push(randomMovie)
+            }
+                  for ( i in  arrayOfmovies ){
+
+                          
+                            index = arrayOfmovies[i]
+
+                                console.log( response.results[index].original_title)
+                                  $('.movies').append(`<p>${response.results[index].original_title}</p>`)
+
+
+                  }
+    });
+ // target elements with the "draggable" class
+interact('.draggable')
+  .draggable({
+    // enable inertial throwing
+    inertia: true,
+    // keep the element within the area of it's parent
+    restrict: {
+      restriction: "parent",
+      endOnly: true,
+      elementRect: { top: 0, left: 0, bottom: 1, right: 1 }
+    },
+    // enable autoScroll
+    autoScroll: true,
+
+    // call this function on every dragmove event
+    onmove: dragMoveListener,
+    // call this function on every dragend event
+    onend: function (event) {
+      var textEl = event.target.querySelector('p');
+
+      // textEl && (textEl.textContent =
+        
+      //   );
+    }
+  });
+
+  function dragMoveListener (event) {
+    var target = event.target,
+        // keep the dragged position in the data-x/data-y attributes
+        x = (parseFloat(target.getAttribute('data-x')) || 0) + event.dx,
+        y = (parseFloat(target.getAttribute('data-y')) || 0) + event.dy;
+
+    // translate the element
+    target.style.webkitTransform =
+    target.style.transform =
+      'translate(' + x + 'px, ' + y + 'px)';
+
+    // update the posiion attributes
+    target.setAttribute('data-x', x);
+    target.setAttribute('data-y', y);
+  }
+
+  // this is used later in the resizing and gesture demos
+  window.dragMoveListener = dragMoveListener;

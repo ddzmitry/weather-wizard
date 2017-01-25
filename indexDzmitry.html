@@ -9,13 +9,39 @@
     src="https://code.jquery.com/jquery-3.1.1.js"
     integrity="sha256-16cdPddA6VdVInumRGo6IbivbERE8p7CQR3HzTBuELA="
     crossorigin="anonymous"></script>
+    <script src = 'http://code.interactjs.io/v1.2.6/interact.js'></script>
     <style>
       .hide{
         display: none;
       }
+      #drag-1 {
+  width: 25%;
+  height: 100%;
+  min-height: 6.5em;
+  margin: 10%;
+  float: right;
+  z-index: -1;
+
+  background-color: #29e;
+  color: white;
+
+  border-radius: 0.75em;
+  padding: 4%;
+
+  -webkit-transform: translate(0px, 0px);
+          transform: translate(0px, 0px);
+}
+
+#drag-me::before {
+  content: "#" attr(id);
+  font-weight: bold;
+}
     </style>
   </head>
   <body>
+
+
+
     <div class="container">
       
       <input id="txtEmail" type="email" placeholder="Email">
@@ -35,6 +61,12 @@
     <button id="lookInfo">Explore the area</button>
   <section id="weathers"></section>
   </div>
+
+  <div id="drag-1" class="draggable">
+  <h4>Movies To watch</h4>
+  <p class="movies"></p>
+</div>
+
   <script src="https://www.gstatic.com/firebasejs/3.6.5/firebase.js"></script>
   <script src="script.js"></script>
 </body>
