@@ -64,6 +64,7 @@ btnLogin.addEventListener('click', e => {
   promise.catch(e => console.log(e.message));
 
   console.log('loggedin')
+  return false
 
 });
 // sign up 
@@ -87,6 +88,7 @@ btnSignUp.addEventListener('click', e => {
   const promise = auth.createUserWithEmailAndPassword(email, pass);
 
   promise.catch(e => console.log(e.message));
+    return false
 });
 
 btnLogout.addEventListener('click', e => {
@@ -124,10 +126,9 @@ var pos;
 var weatherReport;
 var lowtemp;
 var eventsNames = [];
-$('.draggable').hide();
 $('.info').hide()
 $('#lookInfo').on('click', function() {
-
+      console.log("I was clicked")
   zip = $('.search').val().trim()
   var isValidZip = /(^\d{5}$)|(^\d{5}-\d{4}$)/.test(`${zip}`);
   if (isValidZip === true) {
@@ -194,7 +195,7 @@ function checkWeather(lat, lng) {
           console.log(`${arrWeathers[i].date.year}-${arrWeathers[i].date.month}-${arrWeathers[i].date.yday}`)
 
 
-          $("#weathers").append(`<div  class="weathertag Day${i}" data-day = "${date}" ">
+          $("#weathers").append(`<div  class=" col-md-2 weathertag Day${i}" data-day = "${date}" ">
                                     <p>${arrWeathers[i].date.monthname_short} ${arrWeathers[i].date.day} </p>
                                     <p>Condition ${arrWeathers[i].conditions}</p>
                                     <p>Low temperature ${arrWeathers[i].low.fahrenheit}</p>
