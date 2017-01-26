@@ -15,10 +15,10 @@
     <link rel="stylesheet" type="text/css" href="assets/css/styles.css">
     </head>
   <body>
-  
+      <div class="container"> <!--Added a container to the div to center the navbar and the page. This may change later-->
         
 
-        <nav class="navbar navbar-inverse navbar-static-top"> <!--changed the image to inverse(black) as opposed to default(white)-->
+        <nav class="navbar navbar-inverse navbar-static-top" style = "#"> <!--changed the image to inverse(black) as opposed to default(white)-->
           <div class="container-fluid">
               <!-- Brand and toggle get grouped for better mobile display -->
               <div class="navbar-header">
@@ -58,32 +58,33 @@
         
          <!--Carousel for the Divs showing weather and indoor and outdoor activities-->
 
-          <div id="myCarousel" class="carousel slide">
+          <div id="myCarousel" class="carousel slide" data-ride = "carousel">
 
+              <!--slide indicators for the page/slide user is on-->
               <ol class="carousel-indicators">
                   <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
                   <li data-target="#myCarousel" data-slide-to="1"></li>
                   <li data-target="#myCarousel" data-slide-to="2"></li>
               </ol>
 
-          <div class="carousel-inner">
+          <div class="carousel-inner" role = "listbox">
 
             <div class="item active">
-                  <img class="img-responsive" src="assets/images/fallday.jpg" alt="Fall Day">
+                  <img src="assets/images/fallday.jpg" class="img-responsive" alt="Fall Day">
                 <div class="carousel-caption">
                   <h4>5 Day Forecast</h4>
                 </div>
             </div>
 
             <div class="item">
-                  <img class="img-responsive" src="assets/images/concert2.jpg" alt="Concert">
+                  <img src="assets/images/concert2.jpg" class="img-responsive" alt="Concert">
                 <div class="carousel-caption">
                   <h4>Activities</h4>
                 </div>
             </div>
 
             <div class="item">
-                  <img class="img-responsive" src="assets/images/film.jpg" alt="Movies">
+                  <img src="assets/images/film.jpg" class="img-responsive" alt="Movies">
                 <div class="carousel-caption">
                   <h4>Movies and Television</h4>
                 </div>
@@ -92,7 +93,7 @@
           </div>
 
             <!--added controls to move screen left or right-->
-          <div>
+          
               <a class="carousel-control left" href="#myCarousel" data-slide= "prev">
                 <span class="icon-prev"></span>
               </a>
@@ -100,6 +101,7 @@
               <a class="carousel-control right" href="#myCarousel" data-slide= "next">
                 <span class="icon-next"></span>
               </a>
+          </div>
           </div>
         
 
@@ -136,7 +138,7 @@
   </div>
     <section id="weathers"></section>-->
 
-
+</div>
 
 
 
