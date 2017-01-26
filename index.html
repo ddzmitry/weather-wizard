@@ -11,11 +11,104 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta charset="utf-8">
     <!--Bootstrap CSS-->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="assets/css/styles.css">
     </head>
   <body>
-      <div class="container">
+  
+        
+
+        <nav class="navbar navbar-inverse navbar-static-top"> <!--changed the image to inverse(black) as opposed to default(white)-->
+          <div class="container-fluid">
+              <!-- Brand and toggle get grouped for better mobile display -->
+              <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                  <span class="sr-only">Toggle navigation</span>
+                  <span class="icon-bar"></span>
+                  <span class="icon-bar"></span>
+                  <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#">Weather Wizard</a>
+              </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+              <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <form class="navbar-form navbar-left">
+                  <div class="input-group">
+                      <input type="text" class="form-control" placeholder="Enter location or zip code">
+                      <div class="input-group-btn">
+                        <button class="btn btn-default" type="submit">
+                          <i class="glyphicon glyphicon-search"></i>
+                        </button>
+                      </div>
+                  </div>
+                </form>
+                <form class="navbar-form navbar-right">
+                  <div class="form-group">
+                     <input type="email" class="form-control" placeholder="Enter email address">
+                  </div>
+                  <div class="form-group">
+                      <input type="password" class="form-control" placeholder="Password">
+                  </div>
+                      <button type="submit" class="btn btn-default">Submit</button>
+                </form>
+              </div>
+            </div>
+        </nav>
+        
+         <!--Carousel for the Divs showing weather and indoor and outdoor activities-->
+
+          <div id="myCarousel" class="carousel slide">
+
+              <ol class="carousel-indicators">
+                  <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+                  <li data-target="#myCarousel" data-slide-to="1"></li>
+                  <li data-target="#myCarousel" data-slide-to="2"></li>
+              </ol>
+
+          <div class="carousel-inner">
+
+            <div class="item active">
+                  <img class="img-responsive" src="assets/images/fallday.jpg" alt="Fall Day">
+                <div class="carousel-caption">
+                  <h4>5 Day Forecast</h4>
+                </div>
+            </div>
+
+            <div class="item">
+                  <img class="img-responsive" src="assets/images/concert2.jpg" alt="Concert">
+                <div class="carousel-caption">
+                  <h4>Activities</h4>
+                </div>
+            </div>
+
+            <div class="item">
+                  <img class="img-responsive" src="assets/images/film.jpg" alt="Movies">
+                <div class="carousel-caption">
+                  <h4>Movies and Television</h4>
+                </div>
+            </div>
+
+          </div>
+
+            <!--added controls to move screen left or right-->
+          <div>
+              <a class="carousel-control left" href="#myCarousel" data-slide= "prev">
+                <span class="icon-prev"></span>
+              </a>
+
+              <a class="carousel-control right" href="#myCarousel" data-slide= "next">
+                <span class="icon-next"></span>
+              </a>
+          </div>
+        
+
+                
+                
+              <!-- /.navbar-collapse -->
+            <!-- /.container-fluid -->
+        
+     <!-- <div class="container">
           <div class="row">
               <div class="col-xs-3">
                   <h2>Sign in to Weather Wizard</h2>
@@ -41,7 +134,7 @@
 
     
   </div>
-    <section id="weathers"></section>
+    <section id="weathers"></section>-->
 
 
 
