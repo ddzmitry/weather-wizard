@@ -1,12 +1,11 @@
-
-  // Initialize Firebase
-  var config = {
-    apiKey: "AIzaSyDis8TTOcaDju9g8zqWrlNIei5g5hQiyNc",
-    authDomain: "authlearning-31116.firebaseapp.com",
-    databaseURL: "https://authlearning-31116.firebaseio.com",
-    storageBucket: "authlearning-31116.appspot.com",
-    messagingSenderId: "927237143466"
-  };
+// Initialize Firebase
+var config = {
+  apiKey: "AIzaSyDis8TTOcaDju9g8zqWrlNIei5g5hQiyNc",
+  authDomain: "authlearning-31116.firebaseapp.com",
+  databaseURL: "https://authlearning-31116.firebaseio.com",
+  storageBucket: "authlearning-31116.appspot.com",
+  messagingSenderId: "927237143466"
+};
 firebase.initializeApp(config);
 var database = firebase.database();
 var user = database.ref('/user');
@@ -14,16 +13,25 @@ var newUser = database.ref('/newuser');
 var email;
 var pass;
 var movies;
+database.ref().on('value', function(snap) {
 
-user.on('child_added', function(snap){
-          email =  snap.val().email
-          pass =   snap.val().pass
 
-          console.log(email)
-          console.log(snap.val())
+  console.log((snap.val().user))
+  console.log(snap.val())
 
-          $('#txtEmail').val(email)
-          $('#txtPassword').val(pass)
+
+  $('#txtEmail').val(email)
+  $('#txtPassword').val(pass)
+
+})
+
+user.on('value', function(snap) {
+  email = snap.val().email
+  pass = snap.val().pass
+
+  console.log(email)
+  console.log(snap.val())
+
 });
 
 
@@ -41,20 +49,21 @@ btnLogin.addEventListener('click', e => {
   const pass = txtPassword.value;
   const auth = firebase.auth();
 
-  // Sign in
-  user.push({
 
-          email : email, 
-          pass  : pass,
-          uid: ''
-
-  })
+  var newUser = {
+      email: email,
+      pass: pass,
+      uid: '',
+      zip: ''
+    }
+    // Sign in
+  user.push(newUser)
 
   const promise = auth.signInWithEmailAndPassword(email, pass);
 
   promise.catch(e => console.log(e.message));
 
-console.log('loggedin')
+  console.log('loggedin')
 
 });
 // sign up 
@@ -67,12 +76,12 @@ btnSignUp.addEventListener('click', e => {
   // Sign up
   $('.info').show()
   newUser.push({
-          email : email,
-          pass: pass,
-          status: 'loggedin',
-          zpi: '',
-          uid: ''
-    } );
+    email: email,
+    pass: pass,
+    status: 'loggedin',
+    zpi: '',
+    uid: ''
+  });
   $('#weathers').empty();
 
   const promise = auth.createUserWithEmailAndPassword(email, pass);
@@ -81,9 +90,13 @@ btnSignUp.addEventListener('click', e => {
 });
 
 btnLogout.addEventListener('click', e => {
-    newUser.update({
-          status: 'loggedOUT'
-    } );
+  newUser.update({
+    status: 'loggedOUT'
+  });
+
+  user.update({
+    status: 'loggedOUT'
+  });
 
   firebase.auth().signOut();
 })
@@ -95,12 +108,12 @@ firebase.auth().onAuthStateChanged(firebaseUser => {
   if (firebaseUser) {
     $('.info').show()
     console.log(firebaseUser);
-    console.log(firebaseUser.uid);
+    // console.log(firebaseUser.uid);
 
 
     btnLogout.classList.remove('hide');
   } else {
-    
+
     $('.info').hide()
     console.log("not logged in");
     btnLogout.classList.add('hide');
@@ -118,9 +131,13 @@ $('#lookInfo').on('click', function() {
   zip = $('.search').val().trim()
   var isValidZip = /(^\d{5}$)|(^\d{5}-\d{4}$)/.test(`${zip}`);
   if (isValidZip === true) {
-// user.({zipcode: zip})
-$('#weathers').empty()
-    console.log(zip)
+
+    user.update({
+      zip: zip
+    })
+
+    $('#weathers').empty()
+      // console.log(zip)
     findLocation(zip)
   } else {
 
@@ -172,6 +189,9 @@ function checkWeather(lat, lng) {
         if (i <= 4) {
           date = `${arrWeathers[i].date.monthname_short } ${arrWeathers[i].date.day}`
             // console.log(date)
+          console.log(arrWeathers[i])
+
+          console.log(`${arrWeathers[i].date.year}-${arrWeathers[i].date.month}-${arrWeathers[i].date.yday}`)
 
 
           $("#weathers").append(`<div  class="weathertag Day${i}" data-day = "${date}" ">
@@ -206,10 +226,11 @@ function checkWeather(lat, lng) {
 
               if (events[i].hasOwnProperty('venue')) {
 
+
                 str = (moment(events[i].time)._d).toString()
                 str = str.slice(4, 10).trim()
                   // console.log(str)
-                if (str == day) {
+                if (str === day) {
 
 
                   console.log(events[i].link)
@@ -251,73 +272,38 @@ function checkWeather(lat, lng) {
 
     });
 
-    $('.draggable').show();
+  $('.draggable').show();
 }
-    var settings = {
-      "async": true,
-      "crossDomain": true,
-      "url": "https://api.themoviedb.org/3/movie/popular?page=1&language=en-US&api_key=65df1022a70a9ad63fbfa028ad61d139",
-      "method": "GET"
+var settings = {
+  "async": true,
+  "crossDomain": true,
+  "url": "https://api.themoviedb.org/3/movie/popular?page=1&language=en-US&api_key=65df1022a70a9ad63fbfa028ad61d139",
+  "method": "GET"
+}
+
+$.ajax(settings).done(function(response) {
+  var arrayOfmovies = []
+  while (arrayOfmovies.length < 5) {
+    var randomMovie = Math.floor(Math.random() * response.results.length)
+
+
+    if (arrayOfmovies.includes(randomMovie)) {} else {
+      arrayOfmovies.push(randomMovie)
+
     }
 
-    $.ajax(settings).done(function (response) {
-               var arrayOfmovies = []
-            while (arrayOfmovies.length < 5) {
-            var randomMovie = Math.floor(Math.random()*response.results.length)
-             arrayOfmovies.push(randomMovie)
-            }
-                  for ( i in  arrayOfmovies ){
-
-                          
-                            index = arrayOfmovies[i]
-
-                                console.log( response.results[index].original_title)
-                                  $('.movies').append(`<p>${response.results[index].original_title}</p>`)
 
 
-                  }
-    });
- // target elements with the "draggable" class
-interact('.draggable')
-  .draggable({
-    // enable inertial throwing
-    inertia: true,
-    // keep the element within the area of it's parent
-    restrict: {
-      restriction: "parent",
-      endOnly: true,
-      elementRect: { top: 0, left: 0, bottom: 1, right: 1 }
-    },
-    // enable autoScroll
-    autoScroll: true,
-
-    // call this function on every dragmove event
-    onmove: dragMoveListener,
-    // call this function on every dragend event
-    onend: function (event) {
-      var textEl = event.target.querySelector('p');
-
-      // textEl && (textEl.textContent =
-        
-      //   );
-    }
-  });
-
-  function dragMoveListener (event) {
-    var target = event.target,
-        // keep the dragged position in the data-x/data-y attributes
-        x = (parseFloat(target.getAttribute('data-x')) || 0) + event.dx,
-        y = (parseFloat(target.getAttribute('data-y')) || 0) + event.dy;
-
-    // translate the element
-    target.style.webkitTransform =
-    target.style.transform =
-      'translate(' + x + 'px, ' + y + 'px)';
-
-    // update the posiion attributes
-    target.setAttribute('data-x', x);
-    target.setAttribute('data-y', y);
+    console.log(arrayOfmovies)
   }
+  for (i in arrayOfmovies) {
 
-  // this is used later in the resizing and gesture demos
-  window.dragMoveListener = dragMoveListener;
+
+    index = arrayOfmovies[i]
+
+    console.log(response.results[index].original_title)
+
+
+
+  }
+});
