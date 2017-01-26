@@ -1,57 +1,137 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head> 
-    
-    <!-- YnPOrNLUFvGiSH9zr1HKQ2K9AXkS8a9B Ticketmaster API--> 
-    <script src="https://momentjs.com/downloads/moment.js"></script>
-    <script src="https://code.jquery.com/jquery-3.1.1.js"
-    integrity="sha256-16cdPddA6VdVInumRGo6IbivbERE8p7CQR3HzTBuELA="
-    crossorigin="anonymous"></script>
-    <title>Geolocation</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta charset="utf-8">
-    <!--Bootstrap CSS-->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
-    <link rel="stylesheet" type="text/css" href="assets/css/styles.css">
-    </head>
+  <head>
+    <meta charset="UTF-8">
+    <title>Weather Wizard</title>
+    <link href="assets/css/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+ 
+    <!--<style>
+    .hide{
+    display: none;
+    }
+    #drag-1 {
+    width: 25%;
+    height: 100%;
+    min-height: 6.5em;
+    margin: 10%;
+    float: right;
+    z-index: -1;
+    background-color: #29e;
+    color: white;
+    border-radius: 0.75em;
+    padding: 4%;
+    -webkit-transform: translate(0px, 0px);
+    transform: translate(0px, 0px);
+    }
+    #drag-me::before {
+    content: "#" attr(id);
+    font-weight: bold;
+    }
+    </style> -->
+  </head>
   <body>
-      <div class="container">
-          <div class="row">
-              <div class="col-xs-3">
-                  <h2>Sign in to Weather Wizard</h2>
-                  <form action="" method="">
-                  <div class="form-group">
-                    <label for="email">Email Address</label>
-                    <input type="email" class="form-control" id="email"/>
-                  </div>
-                  <div class="form-group">
-                    <label for="password">Password</label>
-                    <input type="password" class="form-control" id="email"/>
-                  </div>
-                      <div class="form-group">
-                      <input type="submit" id="submit" class="btn btn-default"/>
-                  </div>
-                  </form>
-              </div>
-          </div>
+    <nav class="navbar navbar-inverse navbar-static-top"> <!--changed the image to inverse(black) as opposed to default(white)-->
+    <div class="container-fluid">
+      <!-- Brand and toggle get grouped for better mobile display -->
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="#">Weather Wizard</a>
       </div>
-
-
-
-
+        <div class="info">
+    <input type="search"  class='search' id="search" placeholder="zip code">
+    <button id="lookInfo">Explore the area</button>
+    </div>
+      <!-- Collect the nav links, forms, and other content for toggling -->
+      <input id="txtEmail" type="email" placeholder="Email">
+      <input id="txtPassword" type="password" placeholder="password">
+      <button id="btnLogin" class="btn btn-action">
+      Log In
+      </button>
+      <button id="btnSignUp" class="btn btn-secondary" >
+      Sign Up
+      </button>
+      <button id="btnLogout" class="btn btn-action hide">
+      Log Out
+      </button>
+    </div>
+  </nav>
+  <div class="container">
     
   </div>
-    <section id="weathers"></section>
+<div class="info">
+  <section class="row text-center col-md-offset-1" id="weathers"></section>
+</div>
+  
 
 
 
+<footer id="footer">
+    <div class="footer-top wow fadeInUp" data-wow-duration="1000ms" data-wow-delay="300ms">
+      <div class="container text-center">
+        <div class="footer-logo">
+         <!-- <a href="index.html"><img class="img-responsive" src="assets/images/logo.png" alt=""></a> -->
+        </div>
+        <div class="social-icons">
+          <ul>
+            <li><a src="../images/googleplusimage.png" class="envelope" href="#"><i class="fa fa-envelope"></i></a></li>
+            <li><a src="../images/twitterimage.png" class="twitter" href="#"><i class="fa fa-twitter"></i></a></li> 
+            <li><a src="../images/instagramimage.png" class="dribbble" href="#"><i class="fa fa-dribbble"></i></a></li>
+            <li><a src="../images/fbimage.png" class="facebook" href="#"><i class="fa fa-facebook"></i></a></li>
+            <li><a src="../images/linkedinimage.png" class="linkedin" href="#"><i class="fa fa-linkedin"></i></a></li>
+            <li><a src="../images/youtubeimage.png" class="tumblr" href="#"><i class="fa fa-tumblr-square"></i></a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="container">
+        <div class="row">
+          <div class="col-sm-6">
+            <p>&copy; DAMP 2016</p>
+          </div>
+          <div class="col-sm-6">
+            <p class="pull-right">Designed by <a href="http://www.themeum.com/">Themeum</a></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
 
 
-
-
-    <script src="https://www.gstatic.com/firebasejs/3.6.6/firebase.js"></script>
+    <script src="script.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/3.6.5/firebase.js"></script>
+    <script src="https://momentjs.com/downloads/moment.js">  </script>
+    <script src = 'http://code.interactjs.io/v1.2.6/interact.js'></script>
     <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
     </body>
+
+
+
+
+ <!-- <div id="cssmenu">
+          <ul>
+              <li class="active"><a href="#" target="_blank"><span><i class="sb-home"></i>Home</span></a></li>
+             <li class="has-sub"><a href="#"><span><i class="bars"></i>Menus</span></a>
+          <ul>
+              <li class="has-sub"><a href="#"><span>Activities</span></a>
+          <ul>
+              <li><a href="#"><span>Enter something cool</span></a></li>
+              <li><a href="#"><span>Rawr</span></a></li>
+          </ul>
+              </li>
+              <li><a href="#"><span>Menu 2</span></a></li>
+         </ul>
+               </li>
+               <li><a href="#"><span><i class="fa fa-fw fa-cog"></i> Settings</span></a></li>
+              <li><a href="#"><span><i class="fa fa-fw fa-phone"></i> Contact</span></a></li>
+          </ul>
+      </div> -->
+ 
 </html>

@@ -1,185 +1,379 @@
+// Initialize Firebase
 var config = {
-    apiKey: "AIzaSyBRy3kkGO0DbiUr96M7xPhZA1WvX4CCKD8",
-    authDomain: "authlearning-31116.firebaseapp.com",
-    databaseURL: "https://authlearning-31116.firebaseio.com",
-    storageBucket: "authlearning-31116.appspot.com",
-    messagingSenderId: "927237143466"
-  };
-
-  firebase.initializeApp(config);//my firebase config did't used yet , but all API's already in ! 
-
-  $( document ).ready(function() {
- var pos;
- var weatherReport;
- var lowtemp;
-                               
-                                        $.ajax({
-            url: 'https://maps.googleapis.com/maps/api/geocode/json?address=28105&key=AIzaSyATHPPagioRnJR7xhCvEYBT2VVFUkE5ajY',
-                          })
-                          .done(function(data) {
-                            console.log(data)
-
-                                        
-                                        lat = data.results[0].geometry.bounds.northeast.lat,
-                                        lng = data.results[0].geometry.bounds.northeast.lng
-                                                checkWeather(lat,lng)
-                                  
-                            
-                            console.log("success");
-                          })
-                          .fail(function() {
-                            console.log("error");
-                          })
-                          .always(function() {
-                            console.log("complete");
-                          });
+  apiKey: "AIzaSyDis8TTOcaDju9g8zqWrlNIei5g5hQiyNc",
+  authDomain: "authlearning-31116.firebaseapp.com",
+  databaseURL: "https://authlearning-31116.firebaseio.com",
+  storageBucket: "authlearning-31116.appspot.com",
+  messagingSenderId: "927237143466"
+};
+firebase.initializeApp(config);
+var database = firebase.database();
+var user = database.ref('/user');
+var newUser = database.ref('/newuser');
+var email;
+var pass;
+var movies;
+database.ref().on('value', function(snap) {
 
 
-function checkWeather(lat,lng) {
-            var url = `http://api.wunderground.com/api/3f4f6b8d728af2d4/forecast10day/q/${lat},${lng}.json`     
-          $.ajax({
-                    url: url, // here we get our weather from at and long from first api call
-
-                  })
-                  .done(function(data) {
+  console.log((snap.val().user))
+  console.log(snap.val())
 
 
+  $('#txtEmail').val(email)
+  $('#txtPassword').val(pass)
 
-                      // console.log(data.forecast.simpleforecast.forecastday.length);
+})
 
-                     var arrWeathers = data.forecast.simpleforecast.forecastday;
+user.on('value', function(snap) {
+  email = snap.val().email
+  pass = snap.val().pass
 
-                                for( i in arrWeathers){
+  console.log(email)
+  console.log(snap.val())
 
-
-                                        // console.log(arrWeathers[i]);
-                                        
-                                        // console.log(arrWeathers[i].date.epoch);
-                                        // console.log(arrWeathers[i].date.monthname_short);
-                                        // console.log(arrWeathers[i].date.day);
-                                        // console.log(arrWeathers[i].conditions);
-                                        // console.log(arrWeathers[i].low.fahrenheit);
-                                        // console.log(arrWeathers[i].high.fahrenheit); 
-                                        // console.log(arrWeathers[i].high.icon_url);
-                                        if ( i <= 4 ) { 
-                                        date = `${arrWeathers[i].date.monthname_short } ${arrWeathers[i].date.day}`
-                                        // console.log(date)
+});
 
 
-                                  $("#weathers").append(`<div  class="weathertag Day${i}" data-day = "${date}" ">
+//gET elEMENTS
+const txtEmail = document.getElementById('txtEmail');
+const txtPassword = document.getElementById('txtPassword');
+const btnLogin = document.getElementById('btnLogin');
+const btnSignUp = document.getElementById('btnSignUp');
+const btnLogout = document.getElementById('btnLogout');
+//add login
+
+btnLogin.addEventListener('click', e => {
+  //Get emeil and pass
+  const email = txtEmail.value;
+  const pass = txtPassword.value;
+  const auth = firebase.auth();
+
+
+  var newUser = {
+      email: email,
+      pass: pass,
+      uid: '',
+      zip: ''
+    }
+    // Sign in
+  user.push(newUser)
+
+  const promise = auth.signInWithEmailAndPassword(email, pass);
+
+  promise.catch(e => console.log(e.message));
+
+  console.log('loggedin')
+  return false
+
+});
+// sign up 
+
+btnSignUp.addEventListener('click', e => {
+
+  const email = txtEmail.value;
+  const pass = txtPassword.value;
+  const auth = firebase.auth();
+  // Sign up
+  $('.info').show()
+  newUser.push({
+    email: email,
+    pass: pass,
+    status: 'loggedin',
+    zpi: '',
+    uid: ''
+  });
+  $('#weathers').empty();
+
+  const promise = auth.createUserWithEmailAndPassword(email, pass);
+
+  promise.catch(e => console.log(e.message));
+    return false
+});
+
+btnLogout.addEventListener('click', e => {
+  newUser.update({
+    status: 'loggedOUT'
+  });
+
+  user.update({
+    status: 'loggedOUT'
+  });
+
+  firebase.auth().signOut();
+})
+
+
+//add real time listener
+
+firebase.auth().onAuthStateChanged(firebaseUser => {
+  if (firebaseUser) {
+    $('.info').show()
+    console.log(firebaseUser);
+    // console.log(firebaseUser.uid);
+
+
+    btnLogout.classList.remove('hide');
+  } else {
+
+    $('.info').hide()
+    console.log("not logged in");
+    btnLogout.classList.add('hide');
+  }
+
+});
+var pos;
+var weatherReport;
+var lowtemp;
+var eventsNames = [];
+$('.info').hide()
+$('#lookInfo').on('click', function() {
+      console.log("I was clicked")
+  zip = $('.search').val().trim()
+  var isValidZip = /(^\d{5}$)|(^\d{5}-\d{4}$)/.test(`${zip}`);
+  if (isValidZip === true) {
+
+    user.update({
+      zip: zip
+    })
+
+    $('#weathers').empty()
+      // console.log(zip)
+    findLocation(zip)
+  } else {
+
+    console.log('bad zip')
+  }
+
+
+})
+
+function findLocation(zip) {
+  $.ajax({
+      url: `https://maps.googleapis.com/maps/api/geocode/json?address=${zip}&key=AIzaSyATHPPagioRnJR7xhCvEYBT2VVFUkE5ajY`,
+    })
+    .done(function(data) {
+      console.log(data)
+
+
+      lat = data.results[0].geometry.bounds.northeast.lat,
+        lng = data.results[0].geometry.bounds.northeast.lng
+      checkWeather(lat, lng)
+
+
+      // console.log("success");
+    })
+    .fail(function() {
+      console.log("error");
+    })
+    .always(function() {
+      console.log("complete");
+    });
+}
+
+function checkWeather(lat, lng) {
+  var url = `http://api.wunderground.com/api/3f4f6b8d728af2d4/forecast10day/q/${lat},${lng}.json`
+  $.ajax({
+      url: url, // here we get our weather from at and long from first api call
+
+    })
+    .done(function(data) {
+
+
+
+      // console.log(data.forecast.simpleforecast.forecastday.length);
+
+      var arrWeathers = data.forecast.simpleforecast.forecastday;
+
+      for (i in arrWeathers) {
+
+        if (i <= 4) {
+          date = `${arrWeathers[i].date.monthname_short } ${arrWeathers[i].date.day}`
+            // console.log(date)
+          console.log(arrWeathers[i])
+
+          console.log(`${arrWeathers[i].date.year}-${arrWeathers[i].date.month}-${arrWeathers[i].date.yday}`)
+
+
+          $("#weathers").append(`<div  class=" col-md-2 weathertag Day${i}" data-day = "${date}" ">
                                     <p>${arrWeathers[i].date.monthname_short} ${arrWeathers[i].date.day} </p>
                                     <p>Condition ${arrWeathers[i].conditions}</p>
                                     <p>Low temperature ${arrWeathers[i].low.fahrenheit}</p>
                                     <p>High temperature ${arrWeathers[i].high.fahrenheit}</p>                              
                                     <img class="imgWeather${i}" src="${arrWeathers[i].icon_url}"
-                                
-                                    </div> 
-                                    `  )  
-                                    }                        
-                                }
-
-                                     $('.weathertag').on('click', function(event) {
-                      event.preventDefault();
-                      console.log($(this).data().day)
-
-                        day = $(this).data().day
-
-
-            $.ajax({
-              url: 'https://api.meetup.com/find/events?photo-host=public&sig_id=211596974&lon=-80.7103532&lat=35.1105564&sig=38c2cf24f276b84aafa5431fca7ea8a893f594e4',
-              dataType: 'jsonp'
-              
-            })
-            .done(function(data) {
-              console.log(data)
-              console.log(data.data)
-              console.log("success");
-              var events = data.data;
-                          for ( i in events ) {
-
-                    if(events[i].hasOwnProperty('venue')) {
-                                     
-                    str = (moment(events[i].time)._d).toString()
-                    str = str.slice(4 ,10).trim()
-                    console.log(str)
-                                if ( str == day) {
-
-                                   
-                    console.log(events[i].name)
-                    console.log(events[i].venue.address_1)
-                    console.log(events[i].venue.name)
-                    console.log("---------------------------------")
-
-                                       
-                                }
-
-} 
-       }          
-            })
-
-
-                          $(this).append()
-                    });
-
-                  })
-                  .fail(function() {
-                    console.log("error");
-                  })
-                  .always(function() {
-                    
-                  });
-                   }       
-
-
-// function MeetUp (day) {
-
-
-//             $.ajax({
-//               url: 'https://api.meetup.com/find/events?photo-host=public&sig_id=211596974&lon=-80.7103532&lat=35.1105564&sig=38c2cf24f276b84aafa5431fca7ea8a893f594e4',
-//               dataType: 'jsonp'
-              
-//             })
-//             .done(function(data) {
-//               console.log(data)
-//               console.log(data.data)
-//               console.log("success");
-//               var events = data.data;
-//                           for ( i in events ) {
-
-//                     if(events[i].hasOwnProperty('venue')) {
-                                     
-//                     str = (moment(events[i].time)._d).toString()
-//                     str = str.slice(4 ,10).trim()
-//                     console.log(str)
-//                                 if ( str == day) {
-
                                     
-//                     console.log(events[i].name)
-//                     console.log(events[i].venue.address_1)
-//                     console.log(events[i].venue.name)
-//                     console.log("---------------------------------")
+                                    </div>
+                                    <button class="meetupBtn"  data-day = "${date}" > Meetup </button> 
+                                    `)
+        }
+      }
 
-                                       
-//                                 }
+      $('.meetupBtn').on('dblclick', function(event) {
+        event.preventDefault();
+        // console.log($(this).data().day)
+
+        day = $(this).data().day
+        _this = $(this)
+
+        $.ajax({
+            url: `https://api.meetup.com/find/events?photo-host=public&sig_id=211596974&lon=${lng}&lat=${lat}&sig=38c2cf24f276b84aafa5431fca7ea8a893f594e4`,
+            dataType: 'jsonp'
+
+          })
+          .done(function(data) {
+
+            var events = data.data;
+            for (i in events) {
+
+              if (events[i].hasOwnProperty('venue')) {
+
+
+                str = (moment(events[i].time)._d).toString()
+                str = str.slice(4, 10).trim()
+                  // console.log(str)
+                if (str === day) {
+
+
+                  console.log(events[i].link)
+                  console.log(events[i].name)
+
+
+                  _this.append(`<div class='meetupEvent'> 
+                                          <p>Name: ${events[i].name}</p>
+                                          <p>Adress: ${events[i].venue.address_1}</p>
+                                          <p>Venue Name: ${events[i].venue.name} </p>
+                                          <a href="${events[i].link}" target="_blank">Link on Event</a>
+                                          <p>___________________________</p>
+                              <div>`)
+
+
+                }
+
+
+              }
+            }
+          })
+
+        console.log(eventsNames)
+
+
+      });
+
+      $('.meetupBtn').on('click', function() {
+
+        $(this).html('Meetup')
+
+      })
+
+    })
+    .fail(function() {
+      console.log("error");
+    })
+    .always(function() {
+
+    });
+
+  $('.draggable').show();
+}
+var settings = {
+  "async": true,
+  "crossDomain": true,
+  "url": "https://api.themoviedb.org/3/movie/popular?page=1&language=en-US&api_key=65df1022a70a9ad63fbfa028ad61d139",
+  "method": "GET"
+}
+
+$.ajax(settings).done(function(response) {
+  var arrayOfmovies = []
+  while (arrayOfmovies.length < 5) {
+    var randomMovie = Math.floor(Math.random() * response.results.length)
+
+
+    if (arrayOfmovies.includes(randomMovie)) {} else {
+      arrayOfmovies.push(randomMovie)
+
+    }
 
 
 
-// } 
-
-//                     }          
-//             })
-//             .fail(function() {
-//               console.log("error");
-//             })
-//             .always(function() {
-//               console.log("complete");
-//             });
-
-// }
-
-    console.log( "ready!" );
+    console.log(arrayOfmovies)
+  }
+  for (i in arrayOfmovies) {
 
 
+    index = arrayOfmovies[i]
+
+    console.log(response.results[index].original_title)
+
+
+
+  }
+});
+
+
+// sidebar stuff
+/*
+$('#cssmenu li.active').addClass('open').children('ul').show(); 
+$('#cssmenu li.has-sub>a').on('click', function(){
+  $(this).removeAttr('href');
+  var element = $(this).parent('li');
+  if (element.hasClass('open')) {
+    element.removeClass('open');
+    element.find('li').removeClass('open');
+    element.find('ul').slideUp();
+  }
+  else {
+    element.addClass('open');
+    element.children('ul').slideDown();
+    element.siblings('li').children('ul').slideUp();
+    element.siblings('li').removeClass('open');
+    element.siblings('li').find('li').removeClass('open');
+    element.siblings('li').find('ul').slideUp();
+  }
+});
+
+$('#cssmenu>ul>li.has-sub>a').append('<span class="holder"></span>');
+
+(function getColor() {
+  var r, g, b;
+  var textColor = $('#cssmenu').css('color');
+  textColor = textColor.slice(4);
+  r = textColor.slice(0, textColor.indexOf(','));
+  textColor = textColor.slice(textColor.indexOf(' ') + 1);
+  g = textColor.slice(0, textColor.indexOf(','));
+  textColor = textColor.slice(textColor.indexOf(' ') + 1);
+  b = textColor.slice(0, textColor.indexOf(')'));
+  var l = rgbToHsl(r, g, b);
+  if (l > 0.7) {
+    $('#cssmenu>ul>li>a').css('text-shadow', '0 1px 1px rgba(0, 0, 0, .35)');
+    $('#cssmenu>ul>li>a>span').css('border-color', 'rgba(0, 0, 0, .35)');
+  }
+  else
+  {
+    $('#cssmenu>ul>li>a').css('text-shadow', '0 1px 0 rgba(255, 255, 255, .35)');
+    $('#cssmenu>ul>li>a>span').css('border-color', 'rgba(255, 255, 255, .35)');
+  }
+})();
+
+function rgbToHsl(r, g, b) {
+    r /= 255, g /= 255, b /= 255;
+    var max = Math.max(r, g, b), min = Math.min(r, g, b);
+    var h, s, l = (max + min) / 2;
+
+    if(max == min){
+        h = s = 0;
+    }
+    else {
+        var d = max - min;
+        s = l > 0.5 ? d / (2 - max - min) : d / (max + min);
+        switch(max){
+            case r: h = (g - b) / d + (g < b ? 6 : 0); break;
+            case g: h = (b - r) / d + 2; break;
+            case b: h = (r - g) / d + 4; break;
+        }
+        h /= 6;
+    }
+    return l;
+}
 });
 
 
