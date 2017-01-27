@@ -1,4 +1,5 @@
-// Initialize Firebase
+$(function() {
+
 var config = {
   apiKey: "AIzaSyDis8TTOcaDju9g8zqWrlNIei5g5hQiyNc",
   authDomain: "authlearning-31116.firebaseapp.com",
@@ -6,6 +7,10 @@ var config = {
   storageBucket: "authlearning-31116.appspot.com",
   messagingSenderId: "927237143466"
 };
+
+
+
+
 firebase.initializeApp(config);
 var database = firebase.database();
 var user = database.ref('/user');
@@ -184,6 +189,31 @@ function checkWeather(lat, lng) {
       // console.log(data.forecast.simpleforecast.forecastday.length);
 
       var arrWeathers = data.forecast.simpleforecast.forecastday;
+      var forecastDay = data.forecast.simpleforecast.forecastday;
+                  
+                  for (i = 0; i < 5; i++) {
+                  var strDate = forecastDay[i].date.year + "-" + forecastDay[i].date.month + "-" + forecastDay[i].date.day;
+                  //var strDateF = strDate.slice(15,31).trim();
+                  console.log(strDate);
+                  var date = moment(strDate).format("YYYY-MM-DD").toString();
+                  //console.log(date);
+
+                      var settings = {
+                        "async": true,
+                        "crossDomain": true,
+                        "url": `https://api.seatgeek.com/2/events?&geoip=true&datetime_local.gt=${date}&client_id=NjY5Nzc0MXwxNDg1MzkwMjgxLjEx`,
+                        "method": "GET"
+                      }
+
+                      $.ajax(settings).done(function (data) {
+                        for (j in data.events) {
+                          console.log(data.events[j].short_title);
+                          console.log(moment(data.events[j].datetime_local).format("YYYY-MM-DD"));
+                          console.log(data.events[j].url);
+                        }
+                         console.log(data);
+                      });
+                    }
 
       for (i in arrWeathers) {
 
@@ -307,4 +337,5 @@ $.ajax(settings).done(function(response) {
 
 
   }
+});
 });
