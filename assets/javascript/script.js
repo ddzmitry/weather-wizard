@@ -1,4 +1,5 @@
-// Initialize Firebase
+$(function() {
+
 var config = {
   apiKey: "AIzaSyDis8TTOcaDju9g8zqWrlNIei5g5hQiyNc",
   authDomain: "authlearning-31116.firebaseapp.com",
@@ -6,6 +7,10 @@ var config = {
   storageBucket: "authlearning-31116.appspot.com",
   messagingSenderId: "927237143466"
 };
+
+
+
+
 firebase.initializeApp(config);
 var database = firebase.database();
 var user = database.ref('/user');
@@ -16,8 +21,8 @@ var movies;
 database.ref().on('value', function(snap) {
 
 
-  console.log((snap.val().user))
-  console.log(snap.val())
+  // console.log((snap.val().user))
+  // console.log(snap.val())
 
 
   $('#txtEmail').val(email)
@@ -29,8 +34,8 @@ user.on('value', function(snap) {
   email = snap.val().email
   pass = snap.val().pass
 
-  console.log(email)
-  console.log(snap.val())
+  // console.log(email)
+  // console.log(snap.val())
 
 });
 
@@ -128,7 +133,7 @@ var lowtemp;
 var eventsNames = [];
 $('.info').hide()
 $('#lookInfo').on('click', function() {
-      console.log("I was clicked")
+      // console.log("I was clicked")
   zip = $('.search').val().trim()
   var isValidZip = /(^\d{5}$)|(^\d{5}-\d{4}$)/.test(`${zip}`);
   if (isValidZip === true) {
@@ -184,15 +189,40 @@ function checkWeather(lat, lng) {
       // console.log(data.forecast.simpleforecast.forecastday.length);
 
       var arrWeathers = data.forecast.simpleforecast.forecastday;
+      var forecastDay = data.forecast.simpleforecast.forecastday;
+                  
+                  for (i = 0; i < 5; i++) {
+                  var strDate = forecastDay[i].date.year + "-" + forecastDay[i].date.month + "-" + forecastDay[i].date.day;
+                  //var strDateF = strDate.slice(15,31).trim();
+                  // console.log(strDate);
+                  var date = moment(strDate).format("YYYY-MM-DD").toString();
+                  //console.log(date);
+
+                      var settings = {
+                        "async": true,
+                        "crossDomain": true,
+                        "url": `https://api.seatgeek.com/2/events?&geoip=true&datetime_local.gt=${date}&client_id=NjY5Nzc0MXwxNDg1MzkwMjgxLjEx`,
+                        "method": "GET"
+                      }
+
+                      $.ajax(settings).done(function (data) {
+                        for (j in data.events) {
+                          // console.log(data.events[j].short_title);
+                          // console.log(moment(data.events[j].datetime_local).format("YYYY-MM-DD"));
+                          // console.log(data.events[j].url);
+                        }
+                         // console.log(data);  //CHECK THIS
+                      });
+                    }
 
       for (i in arrWeathers) {
 
         if (i <= 4) {
           date = `${arrWeathers[i].date.monthname_short } ${arrWeathers[i].date.day}`
             // console.log(date)
-          console.log(arrWeathers[i])
+          // console.log(arrWeathers[i])
 
-          console.log(`${arrWeathers[i].date.year}-${arrWeathers[i].date.month}-${arrWeathers[i].date.yday}`)
+          // console.log(`${arrWeathers[i].date.year}-${arrWeathers[i].date.month}-${arrWeathers[i].date.yday}`)
 
 
           $("#weathers").append(`<div  class=" col-md-2 weathertag Day${i}" data-day = "${date}" ">
@@ -213,16 +243,18 @@ function checkWeather(lat, lng) {
         // console.log($(this).data().day)
 
         day = $(this).data().day
+        console.log(day)
         _this = $(this)
 
         $.ajax({
-            url: `https://api.meetup.com/find/events?photo-host=public&sig_id=211596974&lon=${lng}&lat=${lat}&sig=38c2cf24f276b84aafa5431fca7ea8a893f594e4`,
+            url: `https://api.meetup.com/2/open_events?and_text=False&offset=0&format=json&lon=${lng}&limited_events=False&photo-host=secure&page=150&time=0d%2C5d&radius=7&lat=${lat}&desc=False&status=upcoming&sig_id=211596974&sig=f7fffeb2a7206720eb02e77e00013fad17a51e5f`,
             dataType: 'jsonp'
 
           })
           .done(function(data) {
+              console.log(data)
+            var events = data.results;
 
-            var events = data.data;
             for (i in events) {
 
               if (events[i].hasOwnProperty('venue')) {
@@ -230,9 +262,11 @@ function checkWeather(lat, lng) {
 
                 str = (moment(events[i].time)._d).toString()
                 str = str.slice(4, 10).trim()
+                console.log(str)
+
                   // console.log(str)
                 if (str === day) {
-
+                  console.log(day)
 
                   console.log(events[i].link)
                   console.log(events[i].name)
@@ -272,8 +306,6 @@ function checkWeather(lat, lng) {
     .always(function() {
 
     });
-
-  $('.draggable').show();
 }
 var settings = {
   "async": true,
@@ -308,75 +340,4 @@ $.ajax(settings).done(function(response) {
 
   }
 });
-
-
-// sidebar stuff
-/*
-$('#cssmenu li.active').addClass('open').children('ul').show(); 
-$('#cssmenu li.has-sub>a').on('click', function(){
-  $(this).removeAttr('href');
-  var element = $(this).parent('li');
-  if (element.hasClass('open')) {
-    element.removeClass('open');
-    element.find('li').removeClass('open');
-    element.find('ul').slideUp();
-  }
-  else {
-    element.addClass('open');
-    element.children('ul').slideDown();
-    element.siblings('li').children('ul').slideUp();
-    element.siblings('li').removeClass('open');
-    element.siblings('li').find('li').removeClass('open');
-    element.siblings('li').find('ul').slideUp();
-  }
 });
-
-$('#cssmenu>ul>li.has-sub>a').append('<span class="holder"></span>');
-
-(function getColor() {
-  var r, g, b;
-  var textColor = $('#cssmenu').css('color');
-  textColor = textColor.slice(4);
-  r = textColor.slice(0, textColor.indexOf(','));
-  textColor = textColor.slice(textColor.indexOf(' ') + 1);
-  g = textColor.slice(0, textColor.indexOf(','));
-  textColor = textColor.slice(textColor.indexOf(' ') + 1);
-  b = textColor.slice(0, textColor.indexOf(')'));
-  var l = rgbToHsl(r, g, b);
-  if (l > 0.7) {
-    $('#cssmenu>ul>li>a').css('text-shadow', '0 1px 1px rgba(0, 0, 0, .35)');
-    $('#cssmenu>ul>li>a>span').css('border-color', 'rgba(0, 0, 0, .35)');
-  }
-  else
-  {
-    $('#cssmenu>ul>li>a').css('text-shadow', '0 1px 0 rgba(255, 255, 255, .35)');
-    $('#cssmenu>ul>li>a>span').css('border-color', 'rgba(255, 255, 255, .35)');
-  }
-})();
-
-function rgbToHsl(r, g, b) {
-    r /= 255, g /= 255, b /= 255;
-    var max = Math.max(r, g, b), min = Math.min(r, g, b);
-    var h, s, l = (max + min) / 2;
-
-    if(max == min){
-        h = s = 0;
-    }
-    else {
-        var d = max - min;
-        s = l > 0.5 ? d / (2 - max - min) : d / (max + min);
-        switch(max){
-            case r: h = (g - b) / d + (g < b ? 6 : 0); break;
-            case g: h = (b - r) / d + 2; break;
-            case b: h = (r - g) / d + 4; break;
-        }
-        h /= 6;
-    }
-    return l;
-}
-});
-
-
-
-
-        // 32426c2a3817684768446d4c5535244f
