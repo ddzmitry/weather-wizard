@@ -13,7 +13,7 @@
     <!--Bootstrap CSS-->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="assets/css/styles.css">
-    </head>
+  </head>
   <body>
       <div class="container"> <!--Added a container to the div to center the navbar and the page. This may change later-->
         
@@ -56,53 +56,65 @@
             </div>
         </nav>
         
-         <!--Carousel for the Divs showing weather and indoor and outdoor activities-->
+         <!--=======================Carousel================================-->
 
           <div id="myCarousel" class="carousel slide" data-ride = "carousel">
 
-              <!--slide indicators for the page/slide user is on-->
+              <!--Slide indicators-->
               <ol class="carousel-indicators">
                   <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
                   <li data-target="#myCarousel" data-slide-to="1"></li>
                   <li data-target="#myCarousel" data-slide-to="2"></li>
               </ol>
 
-          <div class="carousel-inner" role = "listbox">
+          <div class="carousel-inner" role ="listbox">
 
             <div class="item active">
-                  <img src="assets/images/fallday.jpg" class="img-responsive" alt="Fall Day">
+                  <img class="yourWeather" src="assets/images/fallday.jpg" alt="Fall Day">
+                  <div class="container">
                 <div class="carousel-caption">
-                  <h4>5 Day Forecast</h4>
+                  <h4>The Weather</h4>
+                  <p>Get your 5 day weather forecast</p>
+                  <p><a class="btn btn-md btn-primary" href="#" role="button">"#"</a></p>
                 </div>
+            </div>
             </div>
 
             <div class="item">
-                  <img src="assets/images/concert2.jpg" class="img-responsive" alt="Concert">
+                  <img class="yourActivities" src="assets/images/concert2.jpg"  alt="Concert">
+                  <div class="container">
                 <div class="carousel-caption">
-                  <h4>Activities</h4>
+                  <h4>Activities Around Town</h4>
+                  <p>Check to see what's going on in your area rain or shine</p>
+                  <p><a class="btn btn-md btn-primary" href="#" role="button">"#"</a></p>
                 </div>
+            </div>
             </div>
 
             <div class="item">
-                  <img src="assets/images/film.jpg" class="img-responsive" alt="Movies">
+                  <img class="yourMovies" src="assets/images/film.jpg"  alt="Movies">
+                  <div class="container">
                 <div class="carousel-caption">
                   <h4>Movies and Television</h4>
+                  <p>See what's playing</p>
+                  <p><a class="btn btn-md btn-primary" href="#" role="button">"#"</a></p>
                 </div>
+            </div>
             </div>
 
           </div>
 
-            <!--added controls to move screen left or right-->
+            <!--Added controls to move screen left or right-->
           
-              <a class="carousel-control left" href="#myCarousel" data-slide= "prev">
-                <span class="icon-prev"></span>
+              <a class="left carousel-control" href="#myCarousel" role="button" data-slide= "prev">
+                <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
               </a>
 
-              <a class="carousel-control right" href="#myCarousel" data-slide= "next">
-                <span class="icon-next"></span>
+              <a class="right carousel-control" href="#myCarousel" role="button" data-slide= "next">
+                 <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
               </a>
           </div>
-          </div>
+      </div>
         
 
                 
@@ -138,15 +150,18 @@
   </div>
     <section id="weathers"></section>-->
 
-</div>
 
 
 
 
 
+
+    <script src="js/bootstrap.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script src="https://www.gstatic.com/firebasejs/3.6.6/firebase.js"></script>
     <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
-    </body>
+    
+    <!--<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>-->
+  </body>
 </html>

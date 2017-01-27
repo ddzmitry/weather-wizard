@@ -1,4 +1,4 @@
-var config = {
+/*var config = {
     apiKey: "AIzaSyBRy3kkGO0DbiUr96M7xPhZA1WvX4CCKD8",
     authDomain: "authlearning-31116.firebaseapp.com",
     databaseURL: "https://authlearning-31116.firebaseio.com",
@@ -185,4 +185,4 @@ function checkWeather(lat,lng) {
 
 
 
-        // 32426c2a3817684768446d4c5535244f
+        // 32426c2a3817684768446d4c5535244f*/
