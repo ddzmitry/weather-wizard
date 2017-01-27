@@ -21,8 +21,8 @@ var movies;
 database.ref().on('value', function(snap) {
 
 
-  console.log((snap.val().user))
-  console.log(snap.val())
+  // console.log((snap.val().user))
+  // console.log(snap.val())
 
 
   $('#txtEmail').val(email)
@@ -34,8 +34,8 @@ user.on('value', function(snap) {
   email = snap.val().email
   pass = snap.val().pass
 
-  console.log(email)
-  console.log(snap.val())
+  // console.log(email)
+  // console.log(snap.val())
 
 });
 
@@ -133,7 +133,7 @@ var lowtemp;
 var eventsNames = [];
 $('.info').hide()
 $('#lookInfo').on('click', function() {
-      console.log("I was clicked")
+      // console.log("I was clicked")
   zip = $('.search').val().trim()
   var isValidZip = /(^\d{5}$)|(^\d{5}-\d{4}$)/.test(`${zip}`);
   if (isValidZip === true) {
@@ -194,7 +194,7 @@ function checkWeather(lat, lng) {
                   for (i = 0; i < 5; i++) {
                   var strDate = forecastDay[i].date.year + "-" + forecastDay[i].date.month + "-" + forecastDay[i].date.day;
                   //var strDateF = strDate.slice(15,31).trim();
-                  console.log(strDate);
+                  // console.log(strDate);
                   var date = moment(strDate).format("YYYY-MM-DD").toString();
                   //console.log(date);
 
@@ -207,11 +207,11 @@ function checkWeather(lat, lng) {
 
                       $.ajax(settings).done(function (data) {
                         for (j in data.events) {
-                          console.log(data.events[j].short_title);
-                          console.log(moment(data.events[j].datetime_local).format("YYYY-MM-DD"));
-                          console.log(data.events[j].url);
+                          // console.log(data.events[j].short_title);
+                          // console.log(moment(data.events[j].datetime_local).format("YYYY-MM-DD"));
+                          // console.log(data.events[j].url);
                         }
-                         console.log(data);
+                         // console.log(data);  //CHECK THIS
                       });
                     }
 
@@ -220,9 +220,9 @@ function checkWeather(lat, lng) {
         if (i <= 4) {
           date = `${arrWeathers[i].date.monthname_short } ${arrWeathers[i].date.day}`
             // console.log(date)
-          console.log(arrWeathers[i])
+          // console.log(arrWeathers[i])
 
-          console.log(`${arrWeathers[i].date.year}-${arrWeathers[i].date.month}-${arrWeathers[i].date.yday}`)
+          // console.log(`${arrWeathers[i].date.year}-${arrWeathers[i].date.month}-${arrWeathers[i].date.yday}`)
 
 
           $("#weathers").append(`<div  class=" col-md-2 weathertag Day${i}" data-day = "${date}" ">
@@ -243,16 +243,18 @@ function checkWeather(lat, lng) {
         // console.log($(this).data().day)
 
         day = $(this).data().day
+        console.log(day)
         _this = $(this)
 
         $.ajax({
-            url: `https://api.meetup.com/find/events?photo-host=public&sig_id=211596974&lon=${lng}&lat=${lat}&sig=38c2cf24f276b84aafa5431fca7ea8a893f594e4`,
+            url: `https://api.meetup.com/2/open_events?and_text=False&offset=0&format=json&lon=${lng}&limited_events=False&photo-host=secure&page=150&time=0d%2C5d&radius=7&lat=${lat}&desc=False&status=upcoming&sig_id=211596974&sig=f7fffeb2a7206720eb02e77e00013fad17a51e5f`,
             dataType: 'jsonp'
 
           })
           .done(function(data) {
+              console.log(data)
+            var events = data.results;
 
-            var events = data.data;
             for (i in events) {
 
               if (events[i].hasOwnProperty('venue')) {
@@ -260,9 +262,11 @@ function checkWeather(lat, lng) {
 
                 str = (moment(events[i].time)._d).toString()
                 str = str.slice(4, 10).trim()
+                console.log(str)
+
                   // console.log(str)
                 if (str === day) {
-
+                  console.log(day)
 
                   console.log(events[i].link)
                   console.log(events[i].name)
@@ -302,8 +306,6 @@ function checkWeather(lat, lng) {
     .always(function() {
 
     });
-
-  $('.draggable').show();
 }
 var settings = {
   "async": true,
