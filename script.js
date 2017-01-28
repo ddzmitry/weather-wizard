@@ -219,10 +219,11 @@ function checkWeather(lat, lng) {
 
         if (i <= 4) {
           date = `${arrWeathers[i].date.monthname_short } ${arrWeathers[i].date.day}`
-            // console.log(date)
+          var yearDateMonth=`${arrWeathers[i].date.year}-${arrWeathers[i].date.month}-${arrWeathers[i].date.day}`;
+            console.log(date)
           // console.log(arrWeathers[i])
 
-          // console.log(`${arrWeathers[i].date.year}-${arrWeathers[i].date.month}-${arrWeathers[i].date.yday}`)
+          console.log(`${arrWeathers[i].date.year}-${arrWeathers[i].date.month}-${arrWeathers[i].date.yday}`)
 
 
           $("#weathers").append(`<div  class=" col-md-2 weathertag Day${i}" data-day = "${date}" ">
@@ -236,6 +237,7 @@ function checkWeather(lat, lng) {
                                     <div>
                                     <button class="meetupBtn"  data-day = "${date}" > Meetup </button>
                                     <button class="movieBtn">Movies</button>
+                                    <button class="ticketsBtn" data-time="${yearDateMonth}">Events</button>
                                     </div> 
                                     `)
         }
@@ -319,6 +321,8 @@ var settings = {
 
 
 $('#weathers').on('click', '.movieBtn', function() {
+  
+  $('.movie-space').remove();
   var movieDiv = '<div class="movie-space" class="col-md-2">';
   $(this).after(movieDiv);
   $.ajax(settings).done(function(response) {
@@ -359,4 +363,45 @@ $('#weathers').on('click', '.movieBtn', function() {
       }
     });
   });
+
+
+     $('#weathers').on('click', '.ticketsBtn', function () {
+
+        $('.event-space').remove();
+        var eventDiv = '<div class="event-space" class="col-md-2">';
+        $(this).after(eventDiv);
+          var strDate = $(this).data().time;
+          //var strDate = str.slice(15,31).trim();
+          console.log(strDate);
+          var date = moment(strDate).format("YYYY-MM-DD").toString();
+         console.log(strDate);
+         console.log(date);
+
+          var settings = {
+            "async": true,
+            "crossDomain": true,
+            "url": `https://api.seatgeek.com/2/events?&geoip=true&datetime_local.gte=${date}&client_id=NjY5Nzc0MXwxNDg1MzkwMjgxLjEx`,
+            "method": "GET"
+          }
+
+          $.ajax(settings).done(function (response) {
+            console.log(response);
+
+            for (i = 0; i < 5; i++) {
+              var eventTitle = response.events[i].short_title;
+              var eventTime = moment(response.events[i].datetime_local).format("MM-DD-YYYY").toString();
+              var eventUrl = response.events[i].url;
+
+              console.log(eventTitle);
+              console.log(eventTime);
+              console.log(eventUrl);
+
+              $('.event-space').append(`<div class="event">
+                                      <p class="event-title"><a href="${eventUrl}">${eventTitle}</a></p>
+                                      <p>${eventTime}</p>
+                                      </div>`);
+            }
+          });
+    });
+
 });
