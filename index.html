@@ -5,6 +5,7 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
             <!-- YnPOrNLUFvGiSH9zr1HKQ2K9AXkS8a9B Ticketmaster API--> 
+        <script src="https://use.fontawesome.com/8d0602c6f4.js"></script>
         <script src="https://momentjs.com/downloads/moment.js"></script>
         <script src="https://code.jquery.com/jquery-3.1.1.js"
         integrity="sha256-16cdPddA6VdVInumRGo6IbivbERE8p7CQR3HzTBuELA="
@@ -39,6 +40,7 @@
         <nav class="navbar navbar-inverse navbar-static-top" style = "#"> <!--changed the image to inverse(black) as opposed to default(white)-->
           <div class="container-fluid">
               <!-- Brand and toggle get grouped for better mobile display -->
+
               <div class="navbar-header">
                 <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
                   <span class="sr-only">Toggle navigation</span>
@@ -50,6 +52,7 @@
               </div>
 
     <!-- Collect the nav links, forms, and other content for toggling -->
+
               <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <form class="navbar-form navbar-left">
                   <div class="input-group">
@@ -74,9 +77,16 @@
             </div>
           </nav>
         </div>
+
          <!--=======================Carousel================================-->
-        <div class="container">
-            <div id="myCarousel" class="carousel slide" data-ride="carousel">
+
+      <div class=""> <!--container prevents image from displaying full screen-->
+        <div class="row">
+          <div class="col-md-12">
+            <div id="myCarousel" class="carousel slide" data-ride="carousel" data-wrap="true" data-interval = "8000">
+            <!--we can change the data-interval to false to turn the auto-slide off. You can also adjust the time in milliseconds here-->
+            <!--data-wrap attribute makes carousel stop at the last slide. To change set back to "true"-->
+
       <!-- Indicators -->
                     <ol class="carousel-indicators">
                       <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
@@ -85,7 +95,7 @@
                     </ol>
                     <div class="carousel-inner" role="listbox">
                       <div class="item active">
-                        <img class="image-fluid" src="assets/images/fallday.jpg" alt="Weather"/>
+                        <img class="image-responsive" src="assets/images/fallday.jpg" alt="Weather"/>
                         <div class="container">
                           <div class="carousel-caption">
                             <h4>The Weather</h4>
@@ -95,7 +105,7 @@
                         </div>
                       </div>
                       <div class="item">
-                        <img class="image-fluid" src="assets/images/concert2.jpg" alt="Activities">
+                        <img class="image-responsive" src="assets/images/concert2.jpg" alt="Activities">
                         <div class="container">
                           <div class="carousel-caption">
                             <h4>Activities Around Town</h4>
@@ -105,11 +115,11 @@
                         </div>
                       </div>
                       <div class="item">
-                        <img class="image-fluid" src="assets/images/film.jpg" alt="Third slide">
+                        <img class="image-responsive" src="assets/images/film.jpg" alt="Third slide">
                         <div class="container">
                           <div class="carousel-caption">
                             <h4>Movies and TV</h4>
-                            <p>Find out what is playing near you or on TV</p>
+                            <p>Find out what's playing near you or on TV</p>
                             <p><a class="btn btn-lg btn-primary" href="#" role="button">"#"</a></p>
                           </div>
                         </div>
@@ -124,7 +134,10 @@
                       <span class="sr-only">Next</span>
                     </a>
             </div>
+          </div>
         </div>
+      </div>
+
     <!-- /.carousel -->
 
                 
@@ -159,8 +172,41 @@
     
   </div>
     <section id="weathers"></section>-->
-
-
+    <!--<div class="container">
+    <div class="row">
+  <footer id="footer">
+   <div class="footer-top wow fadeInUp" data-wow-duration="1000ms" data-wow-delay="300ms">
+     <div class="container text-center">
+       <div class="footer-logo">-->
+        <!-- <a href="index.html"><img class="img-responsive" src="assets/images/logo.png" alt=""></a> -->
+       <!--</div>
+       <div class="social-icons">
+         <ul>
+           <li><a src="../images/googleplusimage.png" class="envelope" href="#"><i class="fa fa-envelope"></i></a></li>
+           <li><a src="../images/twitterimage.png" class="twitter" href="#"><i class="fa fa-twitter"></i></a></li>
+           <li><a src="../images/instagramimage.png" class="dribbble" href="#"><i class="fa fa-dribbble"></i></a></li>
+           <li><a src="../images/fbimage.png" class="facebook" href="#"><i class="fa fa-facebook"></i></a></li>
+           <li><a src="../images/linkedinimage.png" class="linkedin" href="#"><i class="fa fa-linkedin"></i></a></li>
+           <li><a src="../images/youtubeimage.png" class="tumblr" href="#"><i class="fa fa-tumblr-square"></i></a></li>
+         </ul>
+       </div>
+     </div>
+   </div>
+   <div class="footer-bottom">
+     <div class="container">
+       <div class="row">
+         <div class="col-sm-6">
+           <p>&copy; DAMP 2016</p>
+         </div>
+         <div class="col-sm-6">
+           <p class="pull-right">Designed by <a href="http://www.themeum.com/">Themeum</a></p>
+         </div>
+       </div>
+     </div>
+   </div>
+ </footer>
+</div>
+</div>-->
 
 
 

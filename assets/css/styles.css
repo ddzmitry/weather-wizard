@@ -1,14 +1,12 @@
-/*.carousel-inner > .item > img,
+.carousel-inner > .item > img,
 .carousel-inner > .item > a > img {
-  width: 100%;
-  margin: auto;
-}*/
+  
+        display: block;
+        height: 880px;
+        width: 1920px;
+        
+  }
 
-img {
-width: 100%;
-height: auto;
-
-}
 
 
 
@@ -16,21 +14,21 @@ height: auto;
   margin: 0;
  }*/
 
- html, body {
+ /*html, body {
   height: 100%;
- }
+ }*/
 
  /*h1, h2, h3, h4, h5, h6, p {
    margin-bottom: 20px;
 
  }*/
 
- .navbar-default {
+ /*.navbar-default {
   
   background-color: rgba(0,0,0,.5);
   
 
-  }
+  }*/
 
 /*.sect {
 
