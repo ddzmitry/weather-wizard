@@ -233,7 +233,10 @@ function checkWeather(lat, lng) {
                                     <img class="imgWeather${i}" src="${arrWeathers[i].icon_url}"
                                     
                                     </div>
-                                    <button class="meetupBtn"  data-day = "${date}" > Meetup </button> 
+                                    <div>
+                                    <button class="meetupBtn"  data-day = "${date}" > Meetup </button>
+                                    <button class="movieBtn">Movies</button>
+                                    </div> 
                                     `)
         }
       }
@@ -314,30 +317,46 @@ var settings = {
   "method": "GET"
 }
 
-$.ajax(settings).done(function(response) {
-  var arrayOfmovies = []
-  while (arrayOfmovies.length < 5) {
-    var randomMovie = Math.floor(Math.random() * response.results.length)
+
+$('#weathers').on('click', '.movieBtn', function() {
+  var movieDiv = '<div class="movie-space" class="col-md-2">';
+  $(this).after(movieDiv);
+  $.ajax(settings).done(function(response) {
+    
+    var arrayOfmovies = []
+    while (arrayOfmovies.length < 5) {
+      var randomMovie = Math.floor(Math.random() * response.results.length);
 
 
-    if (arrayOfmovies.includes(randomMovie)) {} else {
-      arrayOfmovies.push(randomMovie)
+      if (arrayOfmovies.includes(randomMovie)) {} else {
+        arrayOfmovies.push(randomMovie);
 
+      }
+
+
+
+      console.log(arrayOfmovies);
+      console.log(response);
     }
+    for (i in arrayOfmovies) {
+
+
+      index = arrayOfmovies[i]
+
+      console.log(response.results[index].original_title);
+      console.log(response.results[index].overview);
+      var movieTitle = response.results[index].original_title;
+      var movieDesc = response.results[index].overview;
+     
+      $('.movie-space').append(`<div class="movie">
+                              <p class="movie-title">${movieTitle}</p>
+                              <p>${movieDesc}</p>                        
+                              </div>`);
 
 
 
-    console.log(arrayOfmovies)
-  }
-  for (i in arrayOfmovies) {
 
-
-    index = arrayOfmovies[i]
-
-    console.log(response.results[index].original_title)
-
-
-
-  }
-});
+      }
+    });
+  });
 });
