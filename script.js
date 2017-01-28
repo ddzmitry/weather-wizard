@@ -1,5 +1,7 @@
-$(function() {
 
+
+
+$(function() {
 var config = {
   apiKey: "AIzaSyDis8TTOcaDju9g8zqWrlNIei5g5hQiyNc",
   authDomain: "authlearning-31116.firebaseapp.com",
@@ -25,8 +27,9 @@ database.ref().on('value', function(snap) {
   // console.log(snap.val())
 
 
-  $('#txtEmail').val(email)
-  $('#txtPassword').val(pass)
+  $('.search').val(localStorage.zip)
+  $('#txtEmail').val(localStorage.email)
+  $('#txtPassword').val(localStorage.password)
 
 })
 
@@ -48,11 +51,17 @@ const btnSignUp = document.getElementById('btnSignUp');
 const btnLogout = document.getElementById('btnLogout');
 //add login
 
+
+
+
 btnLogin.addEventListener('click', e => {
   //Get emeil and pass
   const email = txtEmail.value;
   const pass = txtPassword.value;
   const auth = firebase.auth();
+
+localStorage.setItem("email", email)
+localStorage.setItem("password" , pass )
 
 
   var newUser = {
@@ -67,7 +76,7 @@ btnLogin.addEventListener('click', e => {
   const promise = auth.signInWithEmailAndPassword(email, pass);
 
   promise.catch(e => console.log(e.message));
-
+  $('#btnSignUp').hide()
   console.log('loggedin')
   return false
 
@@ -135,6 +144,7 @@ $('.info').hide()
 $('#lookInfo').on('click', function() {
       // console.log("I was clicked")
   zip = $('.search').val().trim()
+
   var isValidZip = /(^\d{5}$)|(^\d{5}-\d{4}$)/.test(`${zip}`);
   if (isValidZip === true) {
 
@@ -143,7 +153,7 @@ $('#lookInfo').on('click', function() {
     })
 
     $('#weathers').empty()
-      // console.log(zip)
+    localStorage.setItem("zip", zip)
     findLocation(zip)
   } else {
 
@@ -219,23 +229,27 @@ function checkWeather(lat, lng) {
 
         if (i <= 4) {
           date = `${arrWeathers[i].date.monthname_short } ${arrWeathers[i].date.day}`
-            // console.log(date)
-          // console.log(arrWeathers[i])
-
-          // console.log(`${arrWeathers[i].date.year}-${arrWeathers[i].date.month}-${arrWeathers[i].date.yday}`)
 
 
-          $("#weathers").append(`<div  class=" col-md-2 weathertag Day${i}" data-day = "${date}" ">
-                                    <p>${arrWeathers[i].date.monthname_short} ${arrWeathers[i].date.day} </p>
+
+          $("#weathers").append(`<div  class=" col-md-2 col-sm-2 weathertag Day${i}" data-day = "${date}" ">
+                                            <div  class="thumbnail"> ${arrWeathers[i].date.monthname_short} ${arrWeathers[i].date.day}
+                                  
                                     <p>Condition ${arrWeathers[i].conditions}</p>
                                     <p>Low temperature ${arrWeathers[i].low.fahrenheit}</p>
                                     <p>High temperature ${arrWeathers[i].high.fahrenheit}</p>                              
-                                    <img class="imgWeather${i}" src="${arrWeathers[i].icon_url}"
+                                    <img class="imgWeather${i}"  src="${arrWeathers[i].icon_url}"
                                     
                                     </div>
-                                    <button class="meetupBtn"  data-day = "${date}" > Meetup </button> 
+                                    <div>
+                                    <button class="meetupBtn"  data-day = "${date}" > Meetup </button>
+                                    <button class="movieBtn">Movies</button>
+                                    </div>
+                                    
+                                    </div> 
                                     `)
         }
+
       }
 
       $('.meetupBtn').on('dblclick', function(event) {
@@ -314,30 +328,48 @@ var settings = {
   "method": "GET"
 }
 
-$.ajax(settings).done(function(response) {
-  var arrayOfmovies = []
-  while (arrayOfmovies.length < 5) {
-    var randomMovie = Math.floor(Math.random() * response.results.length)
+
+$('#weathers').on('click', '.movieBtn', function() {
+  var movieDiv = '<div class="movie-space" class="col-md-2">';
+  $(this).after(movieDiv);
+  $.ajax(settings).done(function(response) {
+    
+    var arrayOfmovies = []
+    while (arrayOfmovies.length < 5) {
+      var randomMovie = Math.floor(Math.random() * response.results.length);
 
 
-    if (arrayOfmovies.includes(randomMovie)) {} else {
-      arrayOfmovies.push(randomMovie)
+      if (arrayOfmovies.includes(randomMovie)) {} else {
+        arrayOfmovies.push(randomMovie);
 
+      }
+
+
+
+      console.log(arrayOfmovies);
+      console.log(response);
     }
+    for (i in arrayOfmovies) {
+
+
+      index = arrayOfmovies[i]
+
+      console.log(response.results[index].original_title);
+      console.log(response.results[index].overview);
+      var movieTitle = response.results[index].original_title;
+      var movieDesc = response.results[index].overview;
+     
+      $('.movie-space').append(`<div class="movie">
+                              <p class="movie-title">${movieTitle}</p>
+                              <p>${movieDesc}</p>                        
+                              </div>`);
+
+
+return false
 
 
 
-    console.log(arrayOfmovies)
-  }
-  for (i in arrayOfmovies) {
-
-
-    index = arrayOfmovies[i]
-
-    console.log(response.results[index].original_title)
-
-
-
-  }
-});
+      }
+    });
+  });
 });
