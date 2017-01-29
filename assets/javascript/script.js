@@ -1,5 +1,7 @@
 
-
+// setTimeout(function(){
+//    window.location.reload(1);
+// }, 5000);
 
 $(function() {
 var config = {
@@ -232,15 +234,40 @@ function checkWeather(lat, lng) {
           date = `${arrWeathers[i].date.monthname_short } ${arrWeathers[i].date.day}`
           var yearDateMonth=`${arrWeathers[i].date.year}-${arrWeathers[i].date.month}-${arrWeathers[i].date.day}`;
 
+                            var weatherCondition = arrWeathers[i].conditions.toString().toLowerCase();
+                            console.log(weatherCondition.toString().toLowerCase())
+                            var imgsrc
+                            if (weatherCondition === 'clear') {
+                              imgsrc = `assets/images/medium/sun.png`
+                            } else if (weatherCondition.includes('cloud')) {
+
+                              imgsrc = `assets/images/medium/cloudiness.png`
+                            } else if (weatherCondition.includes('snow') || weatherCondition.includes('ice')) {
+
+                              imgsrc = `assets/images/medium/snow.png`
+                            } else if (weatherCondition.includes('rain') || weatherCondition.includes('drizzle')) {
+
+                              imgsrc = `assets/images/medium/rain.png`
+                            } else if (weatherCondition.includes('storm') || weatherCondition.includes('thunder')) {
+
+                              imgsrc = `assets/images/medium/thunderstorm.png`
+                            } else if (weatherCondition.includes('fog') || weatherCondition.includes('smoke')) {
+
+                              imgsrc = `assets/images/medium/fog.png`
+                            } else {
+                              imgsrc = `assets/images/medium/fog.png`
+                            }
 
 
-          $("#weathers").append(`<div  class=" col-md-2 col-sm-2 weathertag Day${i}" data-day = "${date}" ">
-                                            <div  class="thumbnail"> ${arrWeathers[i].date.monthname_short} ${arrWeathers[i].date.day}
+
+
+          $("#weathers").append(`<div  class="col-lg-2 col-md-2 col-sm-2 weathertag Day${i}" data-day = "${date}" ">
+                                            <div  class=""> ${arrWeathers[i].date.monthname_short} ${arrWeathers[i].date.day}
                                   
                                     <p>Condition ${arrWeathers[i].conditions}</p>
                                     <p>Low temperature ${arrWeathers[i].low.fahrenheit}</p>
                                     <p>High temperature ${arrWeathers[i].high.fahrenheit}</p>                              
-                                    <img class="imgWeather${i}"  src="${arrWeathers[i].icon_url}"
+                                    <img class="imgWeather${i}"  src="${imgsrc}"
                                     
                                     </div>
                                     <div>

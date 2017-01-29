@@ -23,9 +23,6 @@
 
     <title>Weather Wizard</title>
 
-    <!-- Bootstrap -->
-    <link href="css/bootstrap.min.css" rel="stylesheet">
-
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -34,14 +31,30 @@
     <![endif]-->
 </head>
 <body>
+
+
+<form class="navbar-form navbar-left" role="search">
+  <div class="form-group">
+    <input type="text" id="txtEmail" class="form-control" placeholder="Email">
+    <input type="text" id="txtPassword" class="form-control" placeholder="Password">
+    <input type="text" id="search"  class=" info form-control search" placeholder="Zip Code">
+  </div>
+  <button type="button" id="btnLogin" class="btn btn-default">Log in</button>
+  <button type="button" id="btnLogout" class="btn btn-default hide">Log out</button>
+  <button type="button" id="btnSignUp" class="btn btn-default">Sign up</button>
+   
+  <button type="button" id="lookInfo" class=" info btn btn-default">Search Area</button>
+ 
+
+</form>
   
-  <div class="navbar-wrapper">
-           <!--<div class="container"> -Added a container to the div to center the navbar and the page. This may change later-->
+  <!-- <div class="navbar-wrapper">
+        
         
 
-        <nav class="navbar navbar-inverse navbar-static-top" style = "#"> <!--changed the image to inverse(black) as opposed to default(white)-->
+        <nav class="navbar navbar-inverse navbar-static-top" style = "#"> 
           <div class="container-fluid">
-              <!-- Brand and toggle get grouped for better mobile display -->
+              
               <div class="navbar-header">
                 <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
                   <span class="sr-only">Toggle navigation</span>
@@ -57,8 +70,8 @@
         <input type="search"  class='search' id="search" placeholder="zip code">
           <button id="lookInfo">Explore the area</button>
         </div>
-      <!-- Collect the nav links, forms, and other content for toggling -->
-      <input id="txtEmail" type="email" placeholder="Email">
+
+      <input    id="txtEmail" type="email" placeholder="Email">
       <input id="txtPassword" type="password" placeholder="password">
       <button id="btnLogin" class="btn btn-action">
       Log In
@@ -71,13 +84,13 @@
       </button>
     </div>
   </nav>
-  </div>
+  </div> -->
         
          <!--=======================Carousel================================-->
 
     <div class=""> <!--container prevents image from displaying full screen-->
       <div class="row">
-        <div class="col-md-12">
+        <div class="col-md-12 ">
           <div id="myCarousel" class="carousel slide" data-ride="carousel" data-wrap="true" data-interval = "false">
             <!--we can change the data-interval to false to turn the auto-slide off. You can also adjust the time in milliseconds here-->
             <!--data-wrap attribute makes carousel stop at the last slide. To change set back to "true"-->
@@ -93,13 +106,15 @@
           <div class="carousel-inner" role="listbox">
 
               <div class="item one active"> <!-- First start -->
+
                   <img class="image-responsive" src="assets/images/11.jpg" alt="Weather"/>
                   <div class="container">
 
                     <div class="carousel-caption">
-                      <div class="info">
-                        <section class="row text-center" id="weathers"></section>
-                      </div>
+                     
+                                                      <section class="row text-center info" id="weathers"></section>
+                        <div class="col-md-2 col-sm-2 col-lg-2 col-xs-2 weathertag"></div>
+                   
                           <h4>The Weather</h4>
                             <p>Get your 5 day weather forecast</p>
                             <p><a class="btn btn-lg btn-primary" href="#" role="button">"#"</a></p>
@@ -196,13 +211,40 @@
 
  </div>-->
     <!-- <section id="weathers"></section> -->
+ <footer class="footer">
+      <div class="container">
+         <div class="social-icons">
+          <ul>
+            <li><a src="../images/googleplusimage.png" class="envelope" href="#"><i class="fa fa-envelope"></i></a></li>
+            <li><a src="../images/twitterimage.png" class="twitter" href="#"><i class="fa fa-twitter"></i></a></li> 
+            <li><a src="../images/instagramimage.png" class="dribbble" href="#"><i class="fa fa-dribbble"></i></a></li>
+            <li><a src="../images/fbimage.png" class="facebook" href="#"><i class="fa fa-facebook"></i></a></li>
+            <li><a src="../images/linkedinimage.png" class="linkedin" href="#"><i class="fa fa-linkedin"></i></a></li>
+            <li><a src="../images/youtubeimage.png" class="tumblr" href="#"><i class="fa fa-tumblr-square"></i></a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="container">
+        <div class="row">
+          <div class="col-sm-6">
+            <p>&copy; DAMP 2016</p>
+          </div>
+          <div class="col-sm-6">
+            <!-- <p class="pull-right">Designed by <a href="http://www.themeum.com/">Themeum</a></p> -->
+          </div>
+        </div>
+      </div>
+    </div>
+      </div>
+    </footer>
 
-
-<footer id="footer">
+<!-- <footer id="footer">
     <div class="footer-top wow fadeInUp" data-wow-duration="1000ms" data-wow-delay="300ms">
       <div class="container text-center">
         <div class="footer-logo">
-         <!-- <a href="index.html"><img class="img-responsive" src="assets/images/logo.png" alt=""></a> -->
+     
         </div>
         <div class="social-icons">
           <ul>
@@ -229,7 +271,7 @@
       </div>
     </div>
   </footer>
-
+ -->
 
   
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>

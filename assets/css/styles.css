@@ -9,6 +9,7 @@
   .opacity(50) !important;
 
  } 
+ 
 
 .emotion {
         margin: 25px;
@@ -16,9 +17,11 @@
         height: 45px;
       }
       .weathertag{
-
-        float: left;
-        margin: 20px;
+        width: auto;
+        height: auto;
+        padding: 20px;
+        margin: 0 auto 0 auto;
+        font-size: 16px;
       }
       /* Optional: Makes the sample page fill the window. */
       html, body {
@@ -68,7 +71,7 @@
   transform: scale(1.2);
 }  
 
-#footer {
+.footer {
   color:#fff;
 }
 
@@ -77,16 +80,17 @@
    /* padding:30px 0; */
 }
 
-.text-center {
-  background-color: black;
-}
 
-#footer .footer-bottom {
+/*.text-center {
+  background-color: black;
+}*/
+
+.footer .footer-bottom {
   background-color: black;
   /* padding: 20px 0 10px; */
 }
 
-#footer .footer-bottom a:hover {
+.footer .footer-bottom a:hover {
   text-decoration: underline;
 }
 
@@ -135,6 +139,9 @@
   background-color: #ff6b00;
 }
 
+@-ms-viewport     { width: device-width; }
+@-o-viewport      { width: device-width; }
+@viewport         { width: device-width; }
 
 
 /*sidebar stuff
