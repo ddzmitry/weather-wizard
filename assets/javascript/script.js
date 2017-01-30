@@ -1,5 +1,9 @@
-$(function() {
 
+// setTimeout(function(){
+//    window.location.reload(1);
+// }, 5000);
+
+$(function() {
 var config = {
   apiKey: "AIzaSyDis8TTOcaDju9g8zqWrlNIei5g5hQiyNc",
   authDomain: "authlearning-31116.firebaseapp.com",
@@ -25,8 +29,9 @@ database.ref().on('value', function(snap) {
   // console.log(snap.val())
 
 
-  $('#txtEmail').val(email)
-  $('#txtPassword').val(pass)
+  $('.search').val(localStorage.zip)
+  $('#txtEmail').val(localStorage.email)
+  $('#txtPassword').val(localStorage.password)
 
 })
 
@@ -48,11 +53,17 @@ const btnSignUp = document.getElementById('btnSignUp');
 const btnLogout = document.getElementById('btnLogout');
 //add login
 
+
+
+
 btnLogin.addEventListener('click', e => {
   //Get emeil and pass
   const email = txtEmail.value;
   const pass = txtPassword.value;
   const auth = firebase.auth();
+
+localStorage.setItem("email", email)
+localStorage.setItem("password" , pass )
 
 
   var newUser = {
@@ -67,7 +78,7 @@ btnLogin.addEventListener('click', e => {
   const promise = auth.signInWithEmailAndPassword(email, pass);
 
   promise.catch(e => console.log(e.message));
-
+  $('#btnSignUp').hide()
   console.log('loggedin')
   return false
 
@@ -135,6 +146,7 @@ $('.info').hide()
 $('#lookInfo').on('click', function() {
       // console.log("I was clicked")
   zip = $('.search').val().trim()
+
   var isValidZip = /(^\d{5}$)|(^\d{5}-\d{4}$)/.test(`${zip}`);
   if (isValidZip === true) {
 
@@ -143,7 +155,7 @@ $('#lookInfo').on('click', function() {
     })
 
     $('#weathers').empty()
-      // console.log(zip)
+    localStorage.setItem("zip", zip)
     findLocation(zip)
   } else {
 
@@ -178,6 +190,7 @@ function findLocation(zip) {
 
 function checkWeather(lat, lng) {
   var url = `http://api.wunderground.com/api/3f4f6b8d728af2d4/forecast10day/q/${lat},${lng}.json`
+  console.log(url);
   $.ajax({
       url: url, // here we get our weather from at and long from first api call
 
@@ -191,60 +204,91 @@ function checkWeather(lat, lng) {
       var arrWeathers = data.forecast.simpleforecast.forecastday;
       var forecastDay = data.forecast.simpleforecast.forecastday;
                   
-                  for (i = 0; i < 5; i++) {
-                  var strDate = forecastDay[i].date.year + "-" + forecastDay[i].date.month + "-" + forecastDay[i].date.day;
-                  //var strDateF = strDate.slice(15,31).trim();
-                  // console.log(strDate);
-                  var date = moment(strDate).format("YYYY-MM-DD").toString();
-                  //console.log(date);
+                  // for (i = 0; i < 5; i++) {
+                  // var strDate = forecastDay[i].date.year + "-" + forecastDay[i].date.month + "-" + forecastDay[i].date.day;
+                  // //var strDateF = strDate.slice(15,31).trim();
+                  // // console.log(strDate);
+                  // var date = moment(strDate).format("YYYY-MM-DD").toString();
+                  // //console.log(date);
 
-                      var settings = {
-                        "async": true,
-                        "crossDomain": true,
-                        "url": `https://api.seatgeek.com/2/events?&geoip=true&datetime_local.gt=${date}&client_id=NjY5Nzc0MXwxNDg1MzkwMjgxLjEx`,
-                        "method": "GET"
-                      }
+                  //     var settings = {
+                  //       "async": true,
+                  //       "crossDomain": true,
+                  //       "url": `https://api.seatgeek.com/2/events?&geoip=true&datetime_local.gt=${date}&client_id=NjY5Nzc0MXwxNDg1MzkwMjgxLjEx`,
+                  //       "method": "GET"
+                  //     }
 
-                      $.ajax(settings).done(function (data) {
-                        for (j in data.events) {
-                          // console.log(data.events[j].short_title);
-                          // console.log(moment(data.events[j].datetime_local).format("YYYY-MM-DD"));
-                          // console.log(data.events[j].url);
-                        }
-                         // console.log(data);  //CHECK THIS
-                      });
-                    }
+                  //     $.ajax(settings).done(function (data) {
+                  //       for (j in data.events) {
+                  //         // console.log(data.events[j].short_title);
+                  //         // console.log(moment(data.events[j].datetime_local).format("YYYY-MM-DD"));
+                  //         // console.log(data.events[j].url);
+                  //       }
+                  //        // console.log(data);  //CHECK THIS
+                  //     });
+                  //   }
 
       for (i in arrWeathers) {
 
         if (i <= 4) {
           date = `${arrWeathers[i].date.monthname_short } ${arrWeathers[i].date.day}`
-            // console.log(date)
-          // console.log(arrWeathers[i])
+          var yearDateMonth=`${arrWeathers[i].date.year}-${arrWeathers[i].date.month}-${arrWeathers[i].date.day}`;
 
-          // console.log(`${arrWeathers[i].date.year}-${arrWeathers[i].date.month}-${arrWeathers[i].date.yday}`)
+                            var weatherCondition = arrWeathers[i].conditions.toString().toLowerCase();
+                            console.log(weatherCondition.toString().toLowerCase())
+                            var imgsrc
+                            if (weatherCondition === 'clear') {
+                              imgsrc = `assets/images/medium/sun.png`
+                            } else if (weatherCondition.includes('cloud')) {
+
+                              imgsrc = `assets/images/medium/cloudiness.png`
+                            } else if (weatherCondition.includes('snow') || weatherCondition.includes('ice')) {
+
+                              imgsrc = `assets/images/medium/snow.png`
+                            } else if (weatherCondition.includes('rain') || weatherCondition.includes('drizzle')) {
+
+                              imgsrc = `assets/images/medium/rain.png`
+                            } else if (weatherCondition.includes('storm') || weatherCondition.includes('thunder')) {
+
+                              imgsrc = `assets/images/medium/thunderstorm.png`
+                            } else if (weatherCondition.includes('fog') || weatherCondition.includes('smoke')) {
+
+                              imgsrc = `assets/images/medium/fog.png`
+                            } else {
+                              imgsrc = `assets/images/medium/fog.png`
+                            }
 
 
-          $("#weathers").append(`<div  class=" col-md-2 weathertag Day${i}" data-day = "${date}" ">
-                                    <p>${arrWeathers[i].date.monthname_short} ${arrWeathers[i].date.day} </p>
+
+
+          $("#weathers").append(`<div  class="col-lg-2 col-md-2 col-sm-2 weathertag Day${i}" data-day = "${date}" ">
+                                            <div  class=""> ${arrWeathers[i].date.monthname_short} ${arrWeathers[i].date.day}
+                                  
                                     <p>Condition ${arrWeathers[i].conditions}</p>
                                     <p>Low temperature ${arrWeathers[i].low.fahrenheit}</p>
                                     <p>High temperature ${arrWeathers[i].high.fahrenheit}</p>                              
-                                    <img class="imgWeather${i}" src="${arrWeathers[i].icon_url}"
+                                    <img class="imgWeather${i}"  src="${imgsrc}"
                                     
                                     </div>
                                     <div>
-                                    <button class="meetupBtn"  data-day = "${date}" > Meetup </button>
+                                    <button href="#myCarousel" role="button" data-slide="next"  class="meetupBtn"  data-day = "${date}" > Meetup </button>
                                     <button class="movieBtn">Movies</button>
+                                    <button class="ticketsBtn" data-time="${yearDateMonth}">Events</button>
+                                    </div>
+                                    
                                     </div> 
                                     `)
         }
+
       }
 
-      $('.meetupBtn').on('dblclick', function(event) {
+
+
+//Meetups API function begins
+      $('.meetupBtn').on('click', function(event) {
         event.preventDefault();
         // console.log($(this).data().day)
-
+$('#meetupsBtns').empty()
         day = $(this).data().day
         console.log(day)
         _this = $(this)
@@ -275,7 +319,8 @@ function checkWeather(lat, lng) {
                   console.log(events[i].name)
 
 
-                  _this.append(`<div class='meetupEvent'> 
+                  $('#meetupsBtns').append(`<div class=' col-md-2 meetupEvent'>
+                                          <h4>${day}</h4> 
                                           <p>Name: ${events[i].name}</p>
                                           <p>Adress: ${events[i].venue.address_1}</p>
                                           <p>Venue Name: ${events[i].venue.name} </p>
@@ -296,11 +341,6 @@ function checkWeather(lat, lng) {
 
       });
 
-      $('.meetupBtn').on('click', function() {
-
-        $(this).html('Meetup')
-
-      })
 
     })
     .fail(function() {
@@ -310,6 +350,11 @@ function checkWeather(lat, lng) {
 
     });
 }
+//Meetups API function ends
+
+
+
+//Moviedb.org API function begins
 var settings = {
   "async": true,
   "crossDomain": true,
@@ -317,10 +362,15 @@ var settings = {
   "method": "GET"
 }
 
-
 $('#weathers').on('click', '.movieBtn', function() {
-  var movieDiv = '<div class="movie-space" class="col-md-2">';
-  $(this).after(movieDiv);
+  $('.one, .first').removeClass('active');
+  $('.two, .second').removeClass('active');
+  $('.three, .third').addClass('active');
+  $('.four, .fourth').removeClass('active');
+  
+  $('#movie-space').empty();
+  // var movieDiv = '<div class="movie-space" class="col-md-2">';
+  // $(this).after(movieDiv);
   $.ajax(settings).done(function(response) {
     
     var arrayOfmovies = []
@@ -348,15 +398,63 @@ $('#weathers').on('click', '.movieBtn', function() {
       var movieTitle = response.results[index].original_title;
       var movieDesc = response.results[index].overview;
      
-      $('.movie-space').append(`<div class="movie">
+      $('#movie-space').append(`<div class="movie">
                               <p class="movie-title">${movieTitle}</p>
                               <p>${movieDesc}</p>                        
                               </div>`);
-
-
-
-
       }
     });
   });
+//Moviedb.org API function ends
+
+
+
+
+
+//Seatgeek API function begins
+$('#weathers').on('click', '.ticketsBtn', function () {
+  $('.one, .first').removeClass('active');
+  $('.two, .second').removeClass('active');
+  $('.three, .third').addClass('active');
+  $('.four, .fourth').removeClass('active');
+
+        $('#event-space').empty();
+        // var eventDiv = '<div class="event-space" class="col-md-2">';
+        // $(this).after(eventDiv);
+          var strDate = $(this).data().time;
+          //var strDate = str.slice(15,31).trim();
+          console.log(strDate);
+          var date = moment(strDate).format("YYYY-MM-DD").toString();
+         console.log(strDate);
+         console.log(date);
+
+          var settings = {
+            "async": true,
+            "crossDomain": true,
+            "url": `https://api.seatgeek.com/2/events?&geoip=true&datetime_local.gte=${date}&client_id=NjY5Nzc0MXwxNDg1MzkwMjgxLjEx`,
+            "method": "GET"
+          }
+
+          $.ajax(settings).done(function (response) {
+            console.log(response);
+
+            for (i = 0; i < 5; i++) {
+              var eventTitle = response.events[i].short_title;
+              var eventTime = moment(response.events[i].datetime_local).format("MM-DD-YYYY").toString();
+              var eventUrl = response.events[i].url;
+
+              console.log(eventTitle);
+              console.log(eventTime);
+              console.log(eventUrl);
+
+              $('#event-space').append(`<div class="event">
+                                      <p class="event-title"><a href="${eventUrl}">${eventTitle}</a></p>
+                                      <p>${eventTime}</p>
+                                      </div>`);
+            }
+          });
+    });
+//Seatgeek API function ends
+
+return false
 });

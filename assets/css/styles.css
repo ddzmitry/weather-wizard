@@ -1,5 +1,19 @@
 body {
-  background-image: url("lake-mountains.jpg");
+  background-image: "");
+}
+
+
+.carousel-inner > .item > img,
+.carousel-inner > .item > a > img {
+  
+        display: block;
+        height: 880px;
+        width: 1920px;
+       
+  }
+
+.btn {
+  color: black;
 }
 
 *nav {
@@ -8,9 +22,20 @@ body {
   height: 50px;
   /* background-color: rgba(50,50,50,.9) !important; */
   z-index: 99;
-  .opacity(50) !important;
+  .opacity(.3);
 
  } 
+
+ #carousel-caption {
+     background-color: none;
+ }
+
+ h4, p {
+  text-align: center;
+  font-family: Lucida Sans MS;
+ 
+  color:;
+ }
 
 .emotion {
         margin: 25px;
@@ -61,6 +86,7 @@ body {
   line-height: 36px;
   display: block;
   font-size: 16px;
+  margin-bottom: 25px;
   opacity: 0.8;
 }
 
@@ -70,70 +96,67 @@ body {
   transform: scale(1.2);
 }  
 
-#footer {
-  color:#fff;
-}
+.footer .footer-bottom {
+    text-align: center;
+  }
 
-.footer-top {
-  position: relative;
-   /* padding:30px 0; */
+.footer {
+  color:#fff;
+  background-color: rgba(0,0,0,.2);
 }
 
 .text-center {
   background-color: black;
 }
 
-#footer .footer-bottom {
-  background-color: black;
+.footer-bottom {
+  background-color: none;
+  text-align: center;
   /* padding: 20px 0 10px; */
 }
 
-#footer .footer-bottom a:hover {
+.footer .footer-bottom a:hover {
   text-decoration: underline;
 }
 
-.footer-logo {
-  display: inline-block;
-  margin-bottom: 5px;
-}
 
-#footer .social-icons {
+.footer .social-icons {
   margin-top: 15px;
 }
 
-#footer .social-icons ul {
+.footer .social-icons ul {
   list-style: none;
   padding: 0;
   margin: 0;
 }
 
-#footer .social-icons ul li a {
+.footer .social-icons ul li a {
   background-color: rgba(0,0,0,.2);
   border-radius: 4px;
   line-height: 33px;
 }
 
-#footer .social-icons ul li a:hover {
-  color: #fff
+.footer .social-icons ul li a:hover {
+  color: #fff;
 }
 
-#footer .social-icons ul li a.envelope:hover {
+.footer .social-icons ul li a.envelope:hover {
   background-color: #CECB26;
 }
 
-#footer .social-icons ul li a.facebook:hover {
+.footer .social-icons ul li a.facebook:hover {
   background-color: #3b5999;
 }
-#footer .social-icons ul li a.twitter:hover {
+.footer .social-icons ul li a.twitter:hover {
   background-color: #2ac6f7;
 }
-#footer .social-icons ul li a.dribbble:hover {
+.footer .social-icons ul li a.dribbble:hover {
   background-color: #ff5b92;
 }
-#footer .social-icons ul li a.linkedin:hover {
+.footer .social-icons ul li a.linkedin:hover {
   background-color: #036dc0;
 }
-#footer .social-icons ul li a.tumblr:hover {
+.footer .social-icons ul li a.tumblr:hover {
   background-color: #ff6b00;
 }
 
