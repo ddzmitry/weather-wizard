@@ -383,10 +383,12 @@ var settings = {
 }
 
 $('#weathers').on('click', '.movieBtn', function() {
+
   // $('.one, .first').removeClass('active');
   // $('.two, .second').removeClass('active');
   // $('.three, .third').addClass('active');
   // $('.four, .fourth').removeClass('active');
+
   
   $('#movie-space').empty();
   // var movieDiv = '<div class="movie-space" class="col-md-2">';
