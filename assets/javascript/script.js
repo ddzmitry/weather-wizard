@@ -1,4 +1,18 @@
 
+var windowWidth = $(window).width();
+  if(windowWidth < 768){
+    $('.carousel-caption').addClass('pre-scrollable')
+    console.log('worked')
+}
+if ((windowWidth > 768) && ($('.carousel-caption').hasClass('pre-scrollable'))) {
+      console.log("worked as well")
+  $('.carousel-caption').removeClass('pre-scrollable')
+}
+else {
+
+  console.log('good')
+}
+
 
 
 $(function() {
@@ -20,6 +34,15 @@ var newUser = database.ref('/newuser');
 var email;
 var pass;
 var movies;
+
+
+
+
+
+
+
+
+
 database.ref().on('value', function(snap) {
 
 
@@ -202,51 +225,77 @@ function checkWeather(lat, lng) {
       var arrWeathers = data.forecast.simpleforecast.forecastday;
       var forecastDay = data.forecast.simpleforecast.forecastday;
                   
-                  // for (i = 0; i < 5; i++) {
-                  // var strDate = forecastDay[i].date.year + "-" + forecastDay[i].date.month + "-" + forecastDay[i].date.day;
-                  // //var strDateF = strDate.slice(15,31).trim();
-                  // // console.log(strDate);
-                  // var date = moment(strDate).format("YYYY-MM-DD").toString();
-                  // //console.log(date);
+                  for (i = 0; i < 5; i++) {
+                  var strDate = forecastDay[i].date.year + "-" + forecastDay[i].date.month + "-" + forecastDay[i].date.day;
+                  //var strDateF = strDate.slice(15,31).trim();
+                  // console.log(strDate);
+                  var date = moment(strDate).format("YYYY-MM-DD").toString();
+                  //console.log(date);
 
-                  //     var settings = {
-                  //       "async": true,
-                  //       "crossDomain": true,
-                  //       "url": `https://api.seatgeek.com/2/events?&geoip=true&datetime_local.gt=${date}&client_id=NjY5Nzc0MXwxNDg1MzkwMjgxLjEx`,
-                  //       "method": "GET"
-                  //     }
+                      var settings = {
+                        "async": true,
+                        "crossDomain": true,
+                        "url": `https://api.seatgeek.com/2/events?&geoip=true&datetime_local.gt=${date}&client_id=NjY5Nzc0MXwxNDg1MzkwMjgxLjEx`,
+                        "method": "GET"
+                      }
 
-                  //     $.ajax(settings).done(function (data) {
-                  //       for (j in data.events) {
-                  //         // console.log(data.events[j].short_title);
-                  //         // console.log(moment(data.events[j].datetime_local).format("YYYY-MM-DD"));
-                  //         // console.log(data.events[j].url);
-                  //       }
-                  //        // console.log(data);  //CHECK THIS
-                  //     });
-                  //   }
+                      $.ajax(settings).done(function (data) {
+                        for (j in data.events) {
+                          // console.log(data.events[j].short_title);
+                          // console.log(moment(data.events[j].datetime_local).format("YYYY-MM-DD"));
+                          // console.log(data.events[j].url);
+                        }
+                         // console.log(data);  //CHECK THIS
+                      });
+                    }
 
       for (i in arrWeathers) {
 
         if (i <= 4) {
-          date = `${arrWeathers[i].date.monthname_short } ${arrWeathers[i].date.day}`
+          date = `${arrWeathers[i].date.monthname_short } ${arrWeathers[i].date.day} ${arrWeathers[i].date.year}`
+          console.log(date)
           var yearDateMonth=`${arrWeathers[i].date.year}-${arrWeathers[i].date.month}-${arrWeathers[i].date.day}`;
 
+                            var weatherCondition = arrWeathers[i].conditions.toString().toLowerCase();
+                            console.log(weatherCondition.toString().toLowerCase())
+                            var imgsrc
+                            if (weatherCondition === 'clear') {
+                              imgsrc = `assets/images/medium/sun.png`
+                            } else if (weatherCondition.includes('cloud')) {
+
+                              imgsrc = `assets/images/medium/cloudiness.png`
+                            } else if (weatherCondition.includes('snow') || weatherCondition.includes('ice')) {
+
+                              imgsrc = `assets/images/medium/snow.png`
+                            } else if (weatherCondition.includes('rain') || weatherCondition.includes('drizzle')) {
+
+                              imgsrc = `assets/images/medium/rain.png`
+                            } else if (weatherCondition.includes('storm') || weatherCondition.includes('thunder')) {
+
+                              imgsrc = `assets/images/medium/thunderstorm.png`
+                            } else if (weatherCondition.includes('fog') || weatherCondition.includes('smoke')) {
+
+                              imgsrc = `assets/images/medium/fog.png`
+                            } else {
+                              imgsrc = `assets/images/medium/fog.png`
+                            }
 
 
-          $("#weathers").append(`<div  class=" col-md-2 col-sm-2 weathertag Day${i}" data-day = "${date}" ">
-                                            <div  class="thumbnail"> ${arrWeathers[i].date.monthname_short} ${arrWeathers[i].date.day}
+
+
+          $("#weathers").append(`<div  class="col-lg-2 col-md-2 col-sm-2 weathertag Day${i}" data-day = "${date}" ">
+                                            <div  class=""> ${arrWeathers[i].date.monthname_short} ${arrWeathers[i].date.day}
                                   
                                     <p>Condition ${arrWeathers[i].conditions}</p>
                                     <p>Low temperature ${arrWeathers[i].low.fahrenheit}</p>
                                     <p>High temperature ${arrWeathers[i].high.fahrenheit}</p>                              
-                                    <img class="imgWeather${i}"  src="${arrWeathers[i].icon_url}"
+                                    <img class="imgWeather${i}"  src="${imgsrc}"
                                     
                                     </div>
                                     <div>
                                     <button href="#myCarousel" role="button" data-slide="next"  class="meetupBtn"  data-day = "${date}" > Meetup </button>
                                     <button class="movieBtn">Movies</button>
-                                    <button class="ticketsBtn" data-time="${yearDateMonth}">Events</button>
+                                    <button href="#myCarousel" role="button"  data-slide="prev" class="ticketsBtn" data-time="${yearDateMonth}">Events</button>
                                     </div>
                                     
                                     </div> 
@@ -262,51 +311,49 @@ function checkWeather(lat, lng) {
         event.preventDefault();
         // console.log($(this).data().day)
 $('#meetupsBtns').empty()
-        day = $(this).data().day
-        console.log(day)
+        theDay = $(this).data().day
+        theDay = moment(theDay).format('x').toString()
+        console.log(theDay)
         _this = $(this)
-
+// moment().format('x')
         $.ajax({
-            url: `https://api.meetup.com/2/open_events?and_text=False&offset=0&format=json&lon=${lng}&limited_events=False&photo-host=secure&page=150&time=0d%2C5d&radius=7&lat=${lat}&desc=False&status=upcoming&sig_id=211596974&sig=f7fffeb2a7206720eb02e77e00013fad17a51e5f`,
-            dataType: 'jsonp'
-
+              url: `https://api.meetup.com/2/open_events?&sign=true&photo-host=public&zip=${zip}&time=${theDay},&page=20&api&key=32426c2a3817684768446d4c5535244f`,
+              key: "32426c2a3817684768446d4c5535244f",
+              dataType: 'jsonp'
           })
           .done(function(data) {
               console.log(data)
             var events = data.results;
+            arr = [] ; 
+            while (arr.length < 5) {
 
-            for (i in events) {
+            var eventIndex =  Math.floor(Math.random() * events.length) + 1
 
-              if (events[i].hasOwnProperty('venue')) {
+            if (arr.includes(eventIndex) ){} else{arr.push( eventIndex);}
+              
+           
+}       
+              for ( i in arr) {
+                  index = arr[i]
 
-
-                str = (moment(events[i].time)._d).toString()
-                str = str.slice(4, 10).trim()
-                console.log(str)
-
-                  // console.log(str)
-                if (str === day) {
-                  console.log(day)
-
-                  console.log(events[i].link)
-                  console.log(events[i].name)
-
+               currentEvent = events[index]   
+                        console.log(currentEvent)
+               if (currentEvent.hasOwnProperty('venue')) { 
 
                   $('#meetupsBtns').append(`<div class=' col-md-2 meetupEvent'>
-                                          <h4>${day}</h4> 
-                                          <p>Name: ${events[i].name}</p>
-                                          <p>Adress: ${events[i].venue.address_1}</p>
-                                          <p>Venue Name: ${events[i].venue.name} </p>
-                                          <a href="${events[i].link}" target="_blank">Link on Event</a>
-                                          <p>___________________________</p>
-                              <div>`)
+                                         
+                                         <p>${ currentEvent.name}</p>
+                                         <p>Adress: ${currentEvent.venue.address_1}</p>
+                                         <p>Venue Name: ${currentEvent.venue.name} </p>
+                                         <p><a href="${currentEvent.event_url}" target="_blank" > Link on Meetup </a></p>  
+                             <div>`)
+} else {
 
-
-                }
-
+  console.log("no venue")
+}
 
               }
-            }
+
           })
 
         console.log(eventsNames)
@@ -338,8 +385,9 @@ var settings = {
 $('#weathers').on('click', '.movieBtn', function() {
   $('.one, .first').removeClass('active');
   $('.two, .second').removeClass('active');
-  $('.three, .third').removeClass('active');
-  $('.four, .fourth').addClass('active');
+  $('.three, .third').addClass('active');
+  $('.four, .fourth').removeClass('active');
+
   
   $('#movie-space').empty();
   // var movieDiv = '<div class="movie-space" class="col-md-2">';
