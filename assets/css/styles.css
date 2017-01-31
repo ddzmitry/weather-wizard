@@ -1,0 +1,144 @@
+nav {
+  position: absolute;
+  width: 100%;
+  height: 50px;
+  /* background-color: rgba(50,50,50,.9) !important; */
+   z-index: 10; 
+  /* .opacity(.3); */
+
+ } 
+
+  h3 {
+  display: inline;
+ }
+
+.footer .social-icons ul li a {
+  background-color: rgba(0,0,0,.2);
+  border-radius: 4px;
+  line-height: 33px;
+ 
+}
+
+.carousel-inner{
+  width: auto;
+  height: auto;
+}
+  
+.emotion {
+        margin: 25px;
+        width: 90px;
+        height: 45px;
+      }
+      .weathertag{
+        width: auto;
+        height: auto;
+        padding: 20px;
+        margin: 0 auto 0 auto;
+        font-size: 16px;
+      }
+      /* Optional: Makes the sample page fill the window. */
+      html, body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+      }
+
+/*Footer */
+
+
+.social-icons {
+  margin-top:30px;
+  text-align: center;
+}
+
+.social-icons ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: inline-block;
+}
+
+
+.social-icons ul li {
+  float: left;
+  margin-right: 8px;
+}
+
+.social-icons ul li:last-child {
+  margin-right: 0;
+}
+
+
+.social-icons ul li a {
+  color:#fff;
+  background-color: #d9d9d9;
+  height: 36px;
+  width: 36px;
+  line-height: 36px;
+  display: block;
+  font-size: 16px;
+  opacity: 0.8;
+  margin-bottom: 50px
+  margin-top: 15px;
+}
+
+.social-icons ul li a:hover {
+  opacity: 1;
+  -webkit-transform: scale(1.2);
+  transform: scale(1.2);
+}  
+
+.footer {
+  color:#fff;
+  /* background-color: rgba(0,0,0,.2);*/
+  background-color: none;  
+}
+
+.footer .footer-bottom a:hover {
+  text-decoration: underline;
+}
+
+
+.footer .social-icons {
+  margin-top: 15px;
+}
+
+.footer .social-icons ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.footer .social-icons ul li a {
+  background-color: rgba(0,0,0,.2);
+  border-radius: 4px;
+  line-height: 33px;
+}
+
+.footer .social-icons ul li a:hover {
+  color: #fff
+}
+
+.footer .social-icons ul li a.envelope:hover {
+  background-color: #CECB26;
+}
+
+.footer .social-icons ul li a.facebook:hover {
+  background-color: #3b5999;
+}
+.footer .social-icons ul li a.twitter:hover {
+  background-color: #2ac6f7;
+}
+.footer .social-icons ul li a.dribbble:hover {
+  background-color: #ff5b92;
+}
+.footer .social-icons ul li a.linkedin:hover {
+  background-color: #036dc0;
+}
+.footer .social-icons ul li a.tumblr:hover {
+  background-color: #ff6b00;
+}
+
+@-ms-viewport     { width: device-width; }
+@-o-viewport      { width: device-width; }
+@viewport         { width: device-width; }
