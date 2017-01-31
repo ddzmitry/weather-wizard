@@ -74,6 +74,8 @@
   display: block;
   font-size: 16px;
   opacity: 0.8;
+  margin-bottom: 50px;
+  margin-top: 15px;
 }
 
 .social-icons ul li a:hover {
@@ -110,43 +112,43 @@
   margin-bottom: 5px;
 }
 
-#footer .social-icons {
+.footer .social-icons {
   margin-top: 15px;
 }
 
-#footer .social-icons ul {
+.footer .social-icons ul {
   list-style: none;
   padding: 0;
   margin: 0;
 }
 
-#footer .social-icons ul li a {
+.footer .social-icons ul li a {
   background-color: rgba(0,0,0,.2);
   border-radius: 4px;
   line-height: 33px;
 }
 
-#footer .social-icons ul li a:hover {
+.footer .social-icons ul li a:hover {
   color: #fff
 }
 
-#footer .social-icons ul li a.envelope:hover {
+.footer .social-icons ul li a.envelope:hover {
   background-color: #CECB26;
 }
 
-#footer .social-icons ul li a.facebook:hover {
+.footer .social-icons ul li a.facebook:hover {
   background-color: #3b5999;
 }
-#footer .social-icons ul li a.twitter:hover {
+.footer .social-icons ul li a.twitter:hover {
   background-color: #2ac6f7;
 }
-#footer .social-icons ul li a.dribbble:hover {
+.footer .social-icons ul li a.dribbble:hover {
   background-color: #ff5b92;
 }
-#footer .social-icons ul li a.linkedin:hover {
+.footer .social-icons ul li a.linkedin:hover {
   background-color: #036dc0;
 }
-#footer .social-icons ul li a.tumblr:hover {
+.footer .social-icons ul li a.tumblr:hover {
   background-color: #ff6b00;
 }
 
