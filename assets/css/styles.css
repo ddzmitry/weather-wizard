@@ -1,6 +1,4 @@
-body {
-  background-image: "");
-}
+
 
 
 .carousel-inner > .item > img,
@@ -12,10 +10,16 @@ body {
     
   }
 
+
    .carousel-caption {
      background-color: none;
+     margin-bottom: 120px;
  }
 
+.carousel {
+  position: relative;
+  top: 0;
+}
 
 
 .btn {
@@ -27,8 +31,8 @@ body {
   width: 100%;
   height: 50px;
   /* background-color: rgba(50,50,50,.9) !important; */
-  /* z-index: 99; */
-  .opacity(.3);
+   z-index: 10; 
+  /* .opacity(.3); */
 
  } 
 
@@ -55,17 +59,21 @@ body {
         width: 90px;
         height: 45px;
       }
-      .weathertag{
+.weathertag{
 
-        float: left;
-        margin: 20px;
+  width: auto;
+  height: auto;
+  padding: 20px;
+  margin: 0 auto 0 auto;
+  font-size: 16px;
       }
-      /* Optional: Makes the sample page fill the window. */
-      html, body {
-        height: 100%;
-        margin: 0;
-        padding: 0;
-      }
+
+ /* Optional: Makes the sample page fill the window. */
+ html, body {
+   height: 100%;
+   margin: 0;
+   padding: 0;  
+ }
 
 /*Footer */
 
@@ -99,7 +107,8 @@ body {
   line-height: 36px;
   display: block;
   font-size: 16px;
-  margin-bottom: 25px;
+  margin-bottom: 50px;
+  margin-top: 15px;
   opacity: 0.8;
 }
 
@@ -114,6 +123,7 @@ body {
   }
 
 .footer {
+
   color:#fff;
   background-color: rgba(0,0,0,.2);
 }
