@@ -1,4 +1,9 @@
+.everything{
 
+ margin: 0 auto 0 auto;
+  width: 90%;
+  height: 80%;
+}
 
 *nav {
   position: fixed;

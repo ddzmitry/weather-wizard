@@ -294,10 +294,10 @@ function checkWeather(lat, lng) {
                                     </div>
                                     <div>
                                     <button href="#myCarousel" role="button" data-slide="next"  class="meetupBtn"  data-day = "${date}" > Meetup </button>
-                                    <button class="movieBtn">Movies</button>
+                                    <button data-target="#myCarousel" data-slide-to="2" class="third  movieBtn">Movies</button>
                                     <button href="#myCarousel" role="button"  data-slide="prev" class="ticketsBtn" data-time="${yearDateMonth}">Events</button>
                                     </div>
-                                    
+                                   
                                     </div> 
                                     `)
         }
@@ -383,12 +383,10 @@ var settings = {
 }
 
 $('#weathers').on('click', '.movieBtn', function() {
-  $('.one, .first').removeClass('active');
-  $('.two, .second').removeClass('active');
-  $('.three, .third').addClass('active');
-  $('.four, .fourth').removeClass('active');
-
-  
+  // $('.one, .first').removeClass('active');
+  // $('.two, .second').removeClass('active');
+  // $('.three, .third').addClass('active');
+  // $('.four, .fourth').removeClass('active');
   
   $('#movie-space').empty();
   // var movieDiv = '<div class="movie-space" class="col-md-2">';
