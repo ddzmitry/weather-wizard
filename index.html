@@ -33,20 +33,21 @@
 <body>
 
 
-<form class="navbar-form navbar-left" role="search">
-  <div class="form-group">
-    <input type="text" id="txtEmail" class="form-control" placeholder="Email">
-    <input type="text" id="txtPassword" class="form-control" placeholder="Password">
-    <input type="text" id="search"  class=" info form-control search" placeholder="Zip Code">
-  </div>
+<form class="nav navbar-form navbar-left" role="search">
+    <div class="form-group">
+      <input type="text" id="txtEmail" class="form-control" placeholder="Email">
+      <input type="text" id="txtPassword" class="form-control" placeholder="Password">
+    </div>
   <button type="button" id="btnLogin" class="btn btn-default">Log in</button>
   <button type="button" id="btnLogout" class="btn btn-default hide">Log out</button>
   <button type="button" id="btnSignUp" class="btn btn-default">Sign up</button>
-   
+<form class="nav navbar-form navbar-right">
+  <h3>Title</h1>
+   <div class="form-group">
+    <input type="text" id="search"  class=" info form-control search" placeholder="Zip Code">
+    </div>
   <button type="button" id="lookInfo" class=" info btn btn-default">Search Area</button>
- 
-
-</form>
+ </form>
   
   <!-- <div class="navbar-wrapper">
         
@@ -110,24 +111,29 @@
 
               <div class="item one active"> <!-- First start -->
 
-                  <img class="image-responsive" src="assets/images/11.jpg" alt="Weather"/>
+                  <img class="image-responsive" src="assets/images/weather3.jpg" alt="Weather"/>
                   <div class="container">
-							<!-- pre-scrollable -->
-                    <div id="caption" class="carousel-caption ">
-                     
-                                                      <section class="row text-center info" id="weathers"></section>
-                     <!--    <div class="col-md-2 col-sm-2 col-lg-2 col-xs-2 weathertag"></div> -->
-                   
-                          <h4>The Weather</h4>
+              <!-- pre-scrollable -->
 
-                            <p>Get your 5 day weather forecast</p>
-                         
+                    <div id="caption" class="carousel-caption ">
+                       <div class="col-md-2 col-sm-2 col-lg-2 col-xs-2 weathertag"></div> 
+                          <h4>The Weather</h4>
+                             <p>Get your 5 day weather forecast</p>
+
+              
+                    <div id="caption" class="carousel-caption ">
+                      <section class="row text-center info" id="weathers"></section>
+
+                       <!--    <div class="col-md-2 col-sm-2 col-lg-2 col-xs-2 weathertag"></div> -->
+                      <h4>The Weather</h4>
+                        <p>Get your 5 day weather forecast</p>                         
                     </div>
                   </div>
-              </div> <!-- First slide + pic end -->
+              </div>
+             </div>  <!-- First slide + pic end -->
 <!-- Second Slide Begins -->
                   <div class="item two">
-                    <img class="image-responsive" src="assets/images/12.jpg" alt="Activities">
+                    <img class="image-responsive" src="assets/images/hiking3.jpg" alt="Activities">
                       <div class="container">
                         <div class="carousel-caption">
                       <div class="info"> <!-- btnsMeetup -->
@@ -143,7 +149,7 @@
 <!-- Second Slide Ends -->
 <!-- Third Slide Begins -->
                     <div class="item three">
-                      <img class="image-responsive" src="assets/images/11.jpg" alt="Third slide">
+                      <img class="image-responsive" src="assets/images/concert.jpg" alt="Third slide">
 
                         <div class="container">
                           <div class="carousel-caption">
@@ -160,7 +166,7 @@
 <!-- Third Slide Ends -->
 <!-- Fourth Slide Begins -->
                   <div class="item four">
-                      <img class="image-responsive" src="assets/images/11.jpg" alt="Fourth slide">
+                      <img class="image-responsive" src="assets/images/cinema2.jpg" alt="Fourth slide">
 
                         <div class="container">
                           <div class="carousel-caption">
@@ -187,6 +193,7 @@
           </div>
         </div>
       </div>
+     </div> 
 
     <!-- /.carousel -->
                 
@@ -231,11 +238,11 @@
           </ul>
         </div>
       </div>
-    </div>
+    
     <div class="footer-bottom">
       <div class="container">
         <div class="row">
-          <div class="col-sm-12">
+          <div class="col-sm-6">
             <p>&copy; DAMP 2016</p>
           </div>
           <div class="col-sm-6">
@@ -244,8 +251,7 @@
         </div>
       </div>
     </div>
-      </div>
-    </footer>
+</footer>
 
 <!-- <footer id="footer">
     <div class="footer-top wow fadeInUp" data-wow-duration="1000ms" data-wow-delay="300ms">
