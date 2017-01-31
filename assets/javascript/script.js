@@ -389,7 +389,6 @@ $('#weathers').on('click', '.movieBtn', function() {
   $('.four, .fourth').removeClass('active');
 
   
-  
   $('#movie-space').empty();
   // var movieDiv = '<div class="movie-space" class="col-md-2">';
   // $(this).after(movieDiv);
