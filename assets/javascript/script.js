@@ -252,7 +252,8 @@ function checkWeather(lat, lng) {
       for (i in arrWeathers) {
 
         if (i <= 4) {
-          date = `${arrWeathers[i].date.monthname_short } ${arrWeathers[i].date.day}`
+          date = `${arrWeathers[i].date.monthname_short } ${arrWeathers[i].date.day} ${arrWeathers[i].date.year}`
+          console.log(date)
           var yearDateMonth=`${arrWeathers[i].date.year}-${arrWeathers[i].date.month}-${arrWeathers[i].date.day}`;
 
                             var weatherCondition = arrWeathers[i].conditions.toString().toLowerCase();
@@ -294,7 +295,7 @@ function checkWeather(lat, lng) {
                                     <div>
                                     <button href="#myCarousel" role="button" data-slide="next"  class="meetupBtn"  data-day = "${date}" > Meetup </button>
                                     <button class="movieBtn">Movies</button>
-                                    <button class="ticketsBtn" data-time="${yearDateMonth}">Events</button>
+                                    <button href="#myCarousel" role="button"  data-slide="prev" class="ticketsBtn" data-time="${yearDateMonth}">Events</button>
                                     </div>
                                     
                                     </div> 
@@ -310,51 +311,49 @@ function checkWeather(lat, lng) {
         event.preventDefault();
         // console.log($(this).data().day)
 $('#meetupsBtns').empty()
-        day = $(this).data().day
-        console.log(day)
+        theDay = $(this).data().day
+        theDay = moment(theDay).format('x').toString()
+        console.log(theDay)
         _this = $(this)
-
+// moment().format('x')
         $.ajax({
-            url: `https://api.meetup.com/2/open_events?and_text=False&offset=0&format=json&lon=${lng}&limited_events=False&photo-host=secure&page=150&time=0d%2C5d&radius=7&lat=${lat}&desc=False&status=upcoming&sig_id=211596974&sig=f7fffeb2a7206720eb02e77e00013fad17a51e5f`,
-            dataType: 'jsonp'
-
+              url: `https://api.meetup.com/2/open_events?&sign=true&photo-host=public&zip=${zip}&time=${theDay},&page=20&api&key=32426c2a3817684768446d4c5535244f`,
+              key: "32426c2a3817684768446d4c5535244f",
+              dataType: 'jsonp'
           })
           .done(function(data) {
               console.log(data)
             var events = data.results;
+            arr = [] ; 
+            while (arr.length < 5) {
 
-            for (i in events) {
+            var eventIndex =  Math.floor(Math.random() * events.length) + 1
 
-              if (events[i].hasOwnProperty('venue')) {
+            if (arr.includes(eventIndex) ){} else{arr.push( eventIndex);}
+              
+           
+}       
+              for ( i in arr) {
+                  index = arr[i]
 
-
-                str = (moment(events[i].time)._d).toString()
-                str = str.slice(4, 10).trim()
-                console.log(str)
-
-                  // console.log(str)
-                if (str === day) {
-                  console.log(day)
-
-                  console.log(events[i].link)
-                  console.log(events[i].name)
-
+               currentEvent = events[index]   
+                        console.log(currentEvent)
+               if (currentEvent.hasOwnProperty('venue')) { 
 
                   $('#meetupsBtns').append(`<div class=' col-md-2 meetupEvent'>
-                                          <h4>${day}</h4> 
-                                          <p>Name: ${events[i].name}</p>
-                                          <p>Adress: ${events[i].venue.address_1}</p>
-                                          <p>Venue Name: ${events[i].venue.name} </p>
-                                          <a href="${events[i].link}" target="_blank">Link on Event</a>
-                                          <p>___________________________</p>
-                              <div>`)
+                                         
+                                         <p>${ currentEvent.name}</p>
+                                         <p>Adress: ${currentEvent.venue.address_1}</p>
+                                         <p>Venue Name: ${currentEvent.venue.name} </p>
+                                         <p><a href="${currentEvent.event_url}" target="_blank" > Link on Meetup </a></p>  
+                             <div>`)
+} else {
 
-
-                }
-
+  console.log("no venue")
+}
 
               }
-            }
+
           })
 
         console.log(eventsNames)
@@ -388,6 +387,8 @@ $('#weathers').on('click', '.movieBtn', function() {
   $('.two, .second').removeClass('active');
   $('.three, .third').addClass('active');
   $('.four, .fourth').removeClass('active');
+
+  
   
   $('#movie-space').empty();
   // var movieDiv = '<div class="movie-space" class="col-md-2">';

@@ -10,7 +10,17 @@
 
  } 
 
+.footer .social-icons ul li a {
+  background-color: rgba(0,0,0,.2);
+  border-radius: 4px;
+  line-height: 33px;
+  margin-bottom: 25px;
+}
 
+.carousel-inner{
+  width: auto;
+  height: auto;
+}
   
 .emotion {
         margin: 25px;
