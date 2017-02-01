@@ -107,27 +107,40 @@ h3
 @media (max-width: 800px) {
 .carousel-caption{
 
-    width:1000px;
-    margin-right: 500px;
+    width:400px;
+    margin: 0 auto 0 auto;
     padding: 25px;
+}
+
+.weathertag
+{
+    font-size: 14px;
+    width: 50px;
+    height: auto;
+    margin: 0 auto 0 auto;
+    padding: 20px;
 }
 
 #weathers{
     display: flex;
-    margin-bottom: -350px;
-    margin-right: 500px;
+    height: 350px;
+    margin: 0 auto 0 auto;
+    width: 350px;
 }
 
 #movie-space{
-display: flex;
-    margin-bottom: -350px;
-    margin-right: 350px; } 
+    display: flex;
+    height: 350px;
+    margin: 0 auto 0 auto;
+    width: 350px;
+} 
 
 #event-space{
 
-   display: flex;
-    margin-bottom: -350px;
-    margin-right: 380px;
+    display: inline-block;
+    height: 350px;
+    margin: 250px 50px 0 auto;
+    width: 350px;
 
 }
 
