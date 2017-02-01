@@ -34,7 +34,7 @@
 </head>
 <body class="cursorCustom">
 
-<nav>
+<!-- <nav>
 <form class="nav navbar-form navbar-left" role="search">
     <div class="form-group">
       <input type="text" id="txtEmail" class="form-control" placeholder="Email">
@@ -50,7 +50,40 @@
     </div>
   <button type="button" id="lookInfo" class=" info btn btn-default">Search Area</button>
  </form>
- </nav>
+ </nav> -->
+   <!--Beginning of navbar-->
+  <nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="#">Weather Wizard</a>
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+     <form class="navbar-form navbar-left">
+        <div class="form-group">
+            <input type="text" id="txtEmail" class="form-control" placeholder="Email">
+            <input type="text" id="txtPassword" class="form-control" placeholder="Password">
+        </div>
+  <button type="button" id="btnLogin" class="btn btn-default">Log in</button>
+  <button type="button" id="btnLogout" class="btn btn-default hide">Log out</button>
+  <button type="button" id="btnSignUp" class="btn btn-default">Sign up</button>
+          </form>
+        <form class="nav navbar-form navbar-right" role="search">
+        <div class="form-group">
+        <input type="text" id="search"  class=" info form-control search" placeholder="Zip Code">
+        <button type="button" id="lookInfo" class="btn btn-default">Search</button>
+        </form>
+      </div><!-- /.navbar-collapse -->
+      </div><!-- /.container-fluid -->
+    </nav>
   
   <!-- <div class="navbar-wrapper">
         
