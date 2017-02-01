@@ -1,12 +1,15 @@
-.nav {
+/*.nav {
   position: absolute;
   width: 100%;
   height: 50px;
   background-color: rgba(50,50,50,.9) !important; 
    z-index: 10; 
-  .opacity(.3);
 
- } 
+ } */
+
+ div .caption-carousel {
+  margin: 60px;
+ }
 
  @font-face {
     font-family: titleFont;
