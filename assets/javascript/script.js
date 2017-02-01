@@ -276,7 +276,7 @@ document.getElementById('audio2').play()
   }
 
   function checkWeather(lat, lng) {
-    var url = `http://api.wunderground.com/api/3f4f6b8d728af2d4/forecast10day/q/${lat},${lng}.json`
+    var url = `https://api.wunderground.com/api/3f4f6b8d728af2d4/forecast10day/q/${lat},${lng}.json`
     console.log(url);
     $.ajax({
         url: url, // here we get our weather from at and long from first api call
