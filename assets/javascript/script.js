@@ -77,13 +77,6 @@ $(document).ready(function() {
 });
 
 
-$('.weatherTitle').on('click', function() {
-  $('.first,.one').addClass('active');
-});
-
-
-
-
 $(function() {
 
 
