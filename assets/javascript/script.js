@@ -198,6 +198,7 @@ $(function() {
     });
 
     firebase.auth().signOut();
+     btnLogout.classList.remove('hide');
   })
 
 
@@ -352,9 +353,9 @@ $(function() {
                                     
                                     </div>
                                     <div>
-                                    <button href="#myCarousel" role="button" data-slide="next"  class="cursorCustom  meetupBtn"  data-day = "${date}" > Meetup </button>
-                                    <button href="#myCarousel" class="cursorCustom movieBtn third" data-slide-to="2" >Movies</button>
-                                    <button href="#myCarousel" role="button"  data-slide="prev" class="cursorCustom ticketsBtn" data-time="${yearDateMonth}">Events</button>
+                                    <button href="#myCarousel" role="button" data-slide="next"  class=" specialbutton cursorCustom  meetupBtn"  data-day = "${date}" > <span class="weatherTitle yellow"> Meetup </span> </button>
+                                    <button href="#myCarousel" class=" specialbutton cursorCustom movieBtn third" data-slide-to="2" > <span class="weatherTitle yellow">  Movies </span> </button>
+                                    <button href="#myCarousel" role="button"  data-slide="prev" class=" specialbutton cursorCustom ticketsBtn" data-time="${yearDateMonth}"> <span class="weatherTitle yellow">  Events </span> </button>
                                     </div>
                                     
                                     </div> 
