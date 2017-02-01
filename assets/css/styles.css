@@ -25,7 +25,7 @@ input#search.info.form-control.search
 
 div#bs-navbar-collapse-1.navbar-collapse.collapse
 {
-    filter: blur(1px);
+    filter: opacity();
 }
 /*Add a blur or glass effect to navbar for the styling. We may make it transparent and give it a background image*/
 div .caption-carousel
@@ -92,7 +92,25 @@ body
 }
 
 
-/*APIs*/
+/*APIs, buttons on DOM and Section styling*/
+
+button.cursorCustom.meetupBtn.animated{
+
+}
+button.cursorCustom.meetupBtn.animated{
+
+}
+button.cursorCustom.meetupBtn.animated{
+
+}
+
+section#weathers.row.text-center.info {
+ height: 100em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+}
 
 /*Meetup*/
 .meetupEvent,
