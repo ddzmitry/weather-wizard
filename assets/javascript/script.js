@@ -519,6 +519,7 @@ $(function() {
     var settings = {
       "async": true,
       "crossDomain": true,
+      https://api.seatgeek.com/2/recommendations?events.id=1162104&postal_code=${zip}&client_id=NjY5Nzc0MXwxNDg1MzkwMjgxLjEx
       "url": `https://api.seatgeek.com/2/events?&geoip=true&datetime_local.gte=${date}&client_id=NjY5Nzc0MXwxNDg1MzkwMjgxLjEx`,
       "method": "GET"
     }
