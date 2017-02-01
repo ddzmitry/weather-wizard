@@ -1,3 +1,4 @@
+
 /*nav {
 
   position: absolute;
@@ -64,29 +65,207 @@ html, body {
 
 
 /*APIs*/
+=======
+/*html 
+{
+  position: relative;
+  min-height: 100%;
+}*/
+.navbar
+{
+    margin-bottom: 0;
+}
+/*added margin-bottom 0px to take navbar to remove gap from top of carousel image*/
+
+input#txtEmail.form-control
+{
+    border-radius: 30px;
+}
+input#txtPassword.form-control
+{
+    border-radius: 30px;
+}
+input#search.info.form-control.search
+{
+    border-radius: 30px;
+}
+/*Make input fields round*/
+
+div#bs-navbar-collapse-1.navbar-collapse.collapse
+{
+    filter: opacity();
+}
+/*Add a blur or glass effect to navbar for the styling. We may make it transparent and give it a background image*/
+div .caption-carousel
+{
+    margin: 60px;
+}
+
+@font-face
+{
+    font-family: titleFont;
+
+    src: url(assets/shocktherapybb_reg.otf);
+}
+
+h3
+{
+    font-family: titleFont;
+
+    display: inline;
+}
+
+
+.cursorCustom
+{
+    cursor: url(../images/cursor.png), auto;
+}
+
+.footer .social-icons ul li a
+{
+    line-height: 33px;
+
+    border-radius: 4px;
+    background-color: rgba(0,0,0,.2);
+}
+
+.carousel-inner
+{
+    width: auto;
+    height: auto;
+}
+.carousel-caption{
+
+    width:1200px;
+    display: block;
+    padding: 25px;
+}
+
+#movie-space{
+                margin-bottom: 250px;
+                opacity: .9;
+                background-image: url("http://4.bp.blogspot.com/-OK39pYWBedY/VTmu0KJysgI/AAAAAAAAACo/nNNutFMruQA/s1600/fHKXcmS.png") ;    
+                background-repeat: no-repeat;   
+                background-opacity: .7;
+}    
+#event-space{
+
+                margin-bottom: 250px;
+                opacity: .9;
+
+}
+
+
+@media (max-width: 800px) {
+.carousel-caption{
+
+    width:1000px;
+    margin-right: 500px;
+    padding: 25px;
+}
+
+#weathers{
+    display: flex;
+    margin-bottom: -350px;
+    margin-right: 500px;
+}
+
+#movie-space{
+display: flex;
+    margin-bottom: -350px;
+    margin-right: 350px; } 
+
+#event-space{
+
+   display: flex;
+    margin-bottom: -350px;
+    margin-right: 380px;
+
+}
+
+
+}
+
+
+
+
+.emotion
+{
+    width: 90px;
+    height: 45px;
+    margin: 25px;
+}
+.weathertag
+{
+    font-size: 16px;
+
+    width: auto;
+    height: auto;
+    margin: 0 auto 0 auto;
+    padding: 20px;
+}
+/* Optional: Makes the sample page fill the window. */
+html,
+body
+{
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+
+/*APIs, buttons on DOM and Section styling*/
+
+button.cursorCustom.meetupBtn.animated{
+
+}
+button.cursorCustom.meetupBtn.animated{
+
+}
+button.cursorCustom.meetupBtn.animated{
+
+}
+
+section#weathers.row.text-center.info {
+ height: 100em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+}
 
 /*Meetup*/
-.meetupEvent, .movie, .event {
-  border-style: solid;
-  border-width: 1.5px;
-  background-color: rgba(255,255,255,0.75);
-  margin-left: 5px;
-  margin-right: 5px;
-  left:30px;
-  color: rgb(25,25,25);
+.meetupEvent,
+.movie,
+.event
+{
+    left: 30px;
+
+    margin-right: 5px;
+    margin-left: 5px;
+
+    color: rgb(25,25,25);
+    border-width: 1.5px;
+    border-style: solid;
+    background-color: rgba(255,255,255,.75);
 }
 
-.meetupEvent {
-  bottom: 200px;
+.meetupEvent
+{
+    bottom: 200px;
 }
 
-.event {
-  bottom: 430px;
+.event
+{
+    bottom: 430px;
 }
 
-.meetupEvent > .meetup-eventname, .event > .event-title, .movie > .movie-title {
-  font-weight: bold;
-  font-size: 18px;
+.meetupEvent > .meetup-eventname,
+.event > .event-title,
+.movie > .movie-title
+{
+    font-size: 18px;
+    font-weight: bold;
 }
 
 /*Seatgeek*/
@@ -96,99 +275,143 @@ html, body {
 /*Footer */
 
 
-.social-icons {
-  margin-top:30px;
-  text-align: center;
+.social-icons
+{
+    margin-top: 30px;
+
+    text-align: center;
 }
 
-.social-icons ul {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  display: inline-block;
-}
+.social-icons ul
+{
+    display: inline-block;
 
+    margin: 0;
+    padding: 0;
 
-.social-icons ul li {
-  float: left;
-  margin-right: 8px;
-}
-
-.social-icons ul li:last-child {
-  margin-right: 0;
+    list-style: none;
 }
 
 
-.social-icons ul li a {
-  color:#fff;
-  background-color: #d9d9d9;
-  height: 36px;
-  width: 36px;
-  line-height: 36px;
-  display: block;
-  font-size: 16px;
-  opacity: 0.8;
-  margin-bottom: 50px
-  margin-top: 15px;
+.social-icons ul li
+{
+    float: left;
+
+    margin-right: 8px;
 }
 
-.social-icons ul li a:hover {
-  opacity: 1;
-  -webkit-transform: scale(1.2);
-  transform: scale(1.2);
-}  
-
-.footer {
-  color:#fff;
-  /* background-color: rgba(0,0,0,.2);*/
-  background-color: none;  
-}
-
-.footer .footer-bottom a:hover {
-  text-decoration: underline;
+.social-icons ul li:last-child
+{
+    margin-right: 0;
 }
 
 
-.footer .social-icons {
-  margin-top: 15px;
+.social-icons ul li a
+{
+    font-size: 16px;
+    line-height: 36px;
+
+    display: block;
+
+    width: 36px;
+    height: 36px;
+    margin-top: 20px;
+    margin-bottom: 10px;
+
+    opacity: .8;
+    color: #fff;
+    background-color: #d9d9d9;
 }
 
-.footer .social-icons ul {
-  list-style: none;
-  padding: 0;
-  margin: 0;
+.social-icons ul li a:hover
+{
+    -webkit-transform: scale(1.2);
+            transform: scale(1.2);
+
+    opacity: 1;
+}
+.footer-bottom
+{
+    width: 100%;
+    min-height: 30px;
+}
+/*Make the footer sticky and reponsive*/
+.footer
+{
+    margin-top: 0;
+}
+/*/*added margin-top 0px to take footer to remove gap from the bottom of carousel image*/
+
+.footer
+{
+    color: #fff;
+    /* background-color: rgba(0,0,0,.2);*/
+    background-color: none;
 }
 
-.footer .social-icons ul li a {
-  background-color: rgba(0,0,0,.2);
-  border-radius: 4px;
-  line-height: 33px;
+.footer .footer-bottom a:hover
+{
+    text-decoration: underline;
 }
 
-.footer .social-icons ul li a:hover {
-  color: #fff
+
+.footer .social-icons
+{
+    margin-top: 15px;
 }
 
-.footer .social-icons ul li a.envelope:hover {
-  background-color: #CECB26;
+.footer .social-icons ul
+{
+    margin: 0;
+    padding: 0;
+
+    list-style: none;
 }
 
-.footer .social-icons ul li a.facebook:hover {
-  background-color: #3b5999;
-}
-.footer .social-icons ul li a.twitter:hover {
-  background-color: #2ac6f7;
-}
-.footer .social-icons ul li a.dribbble:hover {
-  background-color: #ff5b92;
-}
-.footer .social-icons ul li a.linkedin:hover {
-  background-color: #036dc0;
-}
-.footer .social-icons ul li a.tumblr:hover {
-  background-color: #ff6b00;
+.footer .social-icons ul li a
+{
+    line-height: 33px;
+
+    border-radius: 4px;
+    background-color: rgba(0,0,0,.2);
 }
 
-@-ms-viewport     { width: device-width; }
-@-o-viewport      { width: device-width; }
-@viewport         { width: device-width; }
+.footer .social-icons ul li a:hover
+{
+    color: #fff;
+}
+
+.footer .social-icons ul li a.envelope:hover
+{
+    background-color: #cecb26;
+}
+
+.footer .social-icons ul li a.facebook:hover
+{
+    background-color: #3b5999;
+}
+.footer .social-icons ul li a.twitter:hover
+{
+    background-color: #2ac6f7;
+}
+.footer .social-icons ul li a.dribbble:hover
+{
+    background-color: #ff5b92;
+}
+.footer .social-icons ul li a.linkedin:hover
+{
+    background-color: #036dc0;
+}
+.footer .social-icons ul li a.tumblr:hover
+{
+    background-color: #ff6b00;
+}
+
+@-ms-viewport
+{
+    width: device-width;
+}
+@-o-viewport
+{
+    width: device-width;
+}
