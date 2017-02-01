@@ -94,23 +94,29 @@ body
 
 /*APIs, buttons on DOM and Section styling*/
 
-button.cursorCustom.meetupBtn.animated{
 
+
+
+
+section#weathers.row.text-center.info
+{
+    display: flex;
+
+    height: 80em;
+
+    align-items: center;
+    justify-content: center;
 }
-button.cursorCustom.meetupBtn.animated{
 
-}
-button.cursorCustom.meetupBtn.animated{
+/*section#movie-space.row.text-center
+{
+    display: flex;
 
-}
+    height: 75em;
 
-section#weathers.row.text-center.info {
- height: 100em;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-}
+    align-items: center;
+    justify-content: center;
+}*/
 
 /*Meetup*/
 .meetupEvent,
