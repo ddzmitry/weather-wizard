@@ -18,8 +18,6 @@ if ((windowWidth > 768) && ($('.carousel-caption').hasClass('pre-scrollable'))) 
 
 $(document).ready(function() {
 
-
-
   $('button').on('mouseover', function(event) {
 
 
