@@ -232,7 +232,7 @@ $(function() {
   $('#lookInfo').on('click', function() {
     // console.log("I was clicked")
     zip = $('.search').val().trim()
-
+document.getElementById('audio2').play()
     var isValidZip = /(^\d{5}$)|(^\d{5}-\d{4}$)/.test(`${zip}`);
     if (isValidZip === true) {
 

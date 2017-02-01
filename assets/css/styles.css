@@ -3,6 +3,12 @@
   position: relative;
   min-height: 100%;
 }*/
+
+body{
+
+  overflow-x: hidden;
+}
+
 @import  url("../shocktherapybb_reg.otf");
 
 
@@ -401,4 +407,5 @@ section#weathers.row.text-center.info {
    font-family: 'Lucida Grande', Helvetica, Arial, Sans-Serif;
    text-decoration: none;
    vertical-align: middle;
+   outline:0 !important;
 }
