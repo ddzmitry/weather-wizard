@@ -66,6 +66,60 @@ h3
     width: auto;
     height: auto;
 }
+.carousel-caption{
+
+    width:1200px;
+    display: block;
+    padding: 25px;
+}
+
+#movie-space{
+                margin-bottom: 250px;
+                opacity: .9;
+                background-image: url("http://4.bp.blogspot.com/-OK39pYWBedY/VTmu0KJysgI/AAAAAAAAACo/nNNutFMruQA/s1600/fHKXcmS.png") ;    
+                background-repeat: no-repeat;   
+                background-opacity: .7;
+}    
+#event-space{
+
+                margin-bottom: 250px;
+                opacity: .9;
+
+}
+
+
+@media (max-width: 1100px) {
+.carousel-caption{
+
+    width:1000px;
+    margin-right: 500px;
+    padding: 25px;
+}
+
+#weathers{
+    display: flex;
+    margin-bottom: -350px;
+    margin-right: 500px;
+}
+
+#movie-space{
+display: flex;
+    margin-bottom: -350px;
+    margin-right: 350px; } 
+
+#event-space{
+
+               display: flex;
+    margin-bottom: -350px;
+    margin-right: 380px;
+
+}
+
+
+}
+
+
+
 
 .emotion
 {

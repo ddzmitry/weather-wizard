@@ -68,6 +68,8 @@ $(document).ready(function() {
 
 
 
+
+
 $(function() {
 
 
@@ -402,7 +404,7 @@ $(function() {
                 console.log(currentEvent)
 
 
-                $('#meetupsBtns').append(`<div class=' col-md-2 meetupEvent'>
+                $('#meetupsBtns').append(`<div class='  col-md-2 meetupEvent'>
                                          
                                          <p class="meetup-eventname"><a href="${currentEvent.event_url}" target="_blank" >${ currentEvent.name}</a></p>
                                          <p>Address: ${currentEvent.venue.address_1}</p>
