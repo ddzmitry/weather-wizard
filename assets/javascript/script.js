@@ -406,11 +406,11 @@ $(function() {
 
                 $('#meetupsBtns').append(`<div class=' col-md-2 meetupEvent'>
                                          
-                                         <p>${ currentEvent.name}</p>
-                                         <p>Adress: ${currentEvent.venue.address_1}</p>
+                                         <p class="meetup-eventname"><a href="${currentEvent.event_url}" target="_blank" >${ currentEvent.name}</a></p>
+                                         <p>Address: ${currentEvent.venue.address_1}</p>
                                          <p>City: ${currentEvent.venue.city}</p>
                                          <p>Venue Name: ${currentEvent.group.name} </p>
-                                         <p><a href="${currentEvent.event_url}" target="_blank" > Link on Meetup </a></p>  
+                                         <!--<p><a href="${currentEvent.event_url}" target="_blank" > Link on Meetup </a></p>-->  
                              <div>`)
 
 
@@ -478,7 +478,7 @@ $(function() {
         var movieTitle = response.results[index].original_title;
         var movieDesc = response.results[index].overview;
 
-        $('#movie-space').append(`<div class="movie">
+        $('#movie-space').append(`<div class="movie col-md-2">
                               <p class="movie-title">${movieTitle}</p>
                               <p>${movieDesc}</p>                        
                               </div>`);
@@ -491,10 +491,10 @@ $(function() {
 
   //Seatgeek API function begins
   $('#weathers').on('click', '.ticketsBtn', function() {
-    $('.one, .first').removeClass('active');
-    $('.two, .second').removeClass('active');
-    $('.three, .third').addClass('active');
-    $('.four, .fourth').removeClass('active');
+    // $('.one, .first').removeClass('active');
+    // $('.two, .second').removeClass('active');
+    // $('.three, .third').removeClass('active');
+    // $('.four, .fourth').addClass('active');
 
     $('#event-space').empty();
 
@@ -524,7 +524,7 @@ $(function() {
         console.log(eventTime);
         console.log(eventUrl);
 
-        $('#event-space').append(`<div class="event">
+        $('#event-space').append(`<div class="event col-md-2">
                                       <p class="event-title"><a href="${eventUrl}">${eventTitle}</a></p>
                                       <p>${eventTime}</p>
                                       </div>`);

@@ -47,6 +47,37 @@ nav {
         padding: 0;
       }
 
+
+/*APIs*/
+
+/*Meetup*/
+.meetupEvent, .movie, .event {
+  border-style: solid;
+  border-width: 1.5px;
+  background-color: rgba(255,255,255,0.75);
+  margin-left: 5px;
+  margin-right: 5px;
+  left:30px;
+  color: rgb(25,25,25);
+}
+
+.meetupEvent {
+  bottom: 200px;
+}
+
+.event {
+  bottom: 430px;
+}
+
+.meetupEvent > .meetup-eventname, .event > .event-title, .movie > .movie-title {
+  font-weight: bold;
+  font-size: 18px;
+}
+
+/*Seatgeek*/
+
+
+
 /*Footer */
 
 
