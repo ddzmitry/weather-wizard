@@ -77,6 +77,10 @@ $(document).ready(function() {
 });
 
 
+$('.weatherTitle').on('click', function() {
+  $('.first,.one').addClass('active');
+});
+
 
 
 
@@ -519,7 +523,7 @@ $(function() {
     var settings = {
       "async": true,
       "crossDomain": true,
-      "url": `https://api.seatgeek.com/2/events?&geoip=true&datetime_local.gte=${date}&client_id=NjY5Nzc0MXwxNDg1MzkwMjgxLjEx`,
+      "url": `https://api.seatgeek.com/2/events?&postal_code=${zip}&datetime_local.gte=${date}&client_id=NjY5Nzc0MXwxNDg1MzkwMjgxLjEx`,
       "method": "GET"
     }
 
