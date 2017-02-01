@@ -150,6 +150,7 @@ $(function() {
     localStorage.setItem("email", email)
     localStorage.setItem("password", pass)
 
+$('#btnLogout').removeClass('hidden')
 
     var newUser = {
         email: email,
