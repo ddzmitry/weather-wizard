@@ -88,7 +88,7 @@ h3
 }
 
 
-@media (max-width: 1100px) {
+@media (max-width: 800px) {
 .carousel-caption{
 
     width:1000px;
@@ -109,7 +109,7 @@ display: flex;
 
 #event-space{
 
-               display: flex;
+   display: flex;
     margin-bottom: -350px;
     margin-right: 380px;
 
