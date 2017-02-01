@@ -11,6 +11,10 @@ nav {
   h3 {
   display: inline;
  }
+.cursorCustom {
+   cursor: url(../images/cursor.png), auto;
+}
+
 
 .footer .social-icons ul li a {
   background-color: rgba(0,0,0,.2);

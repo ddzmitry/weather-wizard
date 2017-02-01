@@ -1,4 +1,7 @@
 var windowWidth = $(window).width();
+
+
+
 if (windowWidth < 768) {
   $('.carousel-caption').addClass('pre-scrollable')
   console.log('worked')
@@ -13,7 +16,64 @@ if ((windowWidth > 768) && ($('.carousel-caption').hasClass('pre-scrollable'))) 
 
 
 
+$(document).ready(function() {
+
+
+
+  $('button').on('mouseover', function(event) {
+
+
+    var classes = ['swing', 'wobble', 'jello'];
+
+    var randomClass = Math.floor(Math.random() * classes.length);
+    console.log(classes[randomClass]);
+    var hello = classes[randomClass]
+
+
+    $(this).addClass(`animated ${hello}`);
+    setTimeout(function() {
+      $(this).removeClass(`animated ${this.hello}`);
+    }, 500)
+
+
+    $(this).addClass('cursorCustom');
+  });
+
+  console.log($('button'))
+  setInterval(function(event) {
+ $('button').on('mouseover', function(event) {
+
+      $('button').removeClass('swing')
+       $('button').removeClass('wobble')
+       $('button').removeClass('jello')
+
+    var classes = ['swing', 'wobble', 'jello'];
+
+    var randomClass = Math.floor(Math.random() * classes.length);
+    console.log(classes[randomClass]);
+    var hello = classes[randomClass]
+
+
+    $(this).addClass(`animated ${hello}`);
+    setTimeout(function() {
+      $(this).removeClass(`animated ${hello}`);
+    }, 500)
+
+
+    $(this).addClass('cursorCustom');
+  });
+  }, 1000)
+
+
+
+});
+
+
+
 $(function() {
+
+
+
   var config = {
     apiKey: "AIzaSyDis8TTOcaDju9g8zqWrlNIei5g5hQiyNc",
     authDomain: "authlearning-31116.firebaseapp.com",
@@ -209,8 +269,8 @@ $(function() {
       .done(function(data) {
 
 
-
-        // console.log(data.forecast.simpleforecast.forecastday.length);
+        console.log(data)
+          // console.log(data.forecast.simpleforecast.forecastday.length);
 
         var arrWeathers = data.forecast.simpleforecast.forecastday;
         var forecastDay = data.forecast.simpleforecast.forecastday;
@@ -282,9 +342,9 @@ $(function() {
                                     
                                     </div>
                                     <div>
-                                    <button href="#myCarousel" role="button" data-slide="next"  class="meetupBtn"  data-day = "${date}" > Meetup </button>
-                                    <button href="#myCarousel" class="movieBtn third" data-slide-to="2" >Movies</button>
-                                    <button href="#myCarousel" role="button"  data-slide="prev" class="ticketsBtn" data-time="${yearDateMonth}">Events</button>
+                                    <button href="#myCarousel" role="button" data-slide="next"  class="cursorCustom  meetupBtn"  data-day = "${date}" > Meetup </button>
+                                    <button href="#myCarousel" class="cursorCustom movieBtn third" data-slide-to="2" >Movies</button>
+                                    <button href="#myCarousel" role="button"  data-slide="prev" class="cursorCustom ticketsBtn" data-time="${yearDateMonth}">Events</button>
                                     </div>
                                     
                                     </div> 
@@ -302,6 +362,7 @@ $(function() {
           $('#meetupsBtns').empty()
           theDay = $(this).data().day
           theDay = moment(theDay).format('x').toString()
+
           console.log(theDay)
           _this = $(this)
 
@@ -314,24 +375,21 @@ $(function() {
               console.log(data)
               var events = data.results;
 
-              events.forEach(function(event) {
-
+              var properEvent = events.filter(function(event) {
                 if (event.hasOwnProperty('venue')) {
-
-                  console.log(event)
-
-                  eventsNames.push(event)
-
-
+                  if (event.venue.hasOwnProperty('address_1')) {
+                    return event;
+                  }
                 }
 
               });
+              console.log(properEvent)
 
 
               arr = [];
               while (arr.length < 5) {
 
-                var eventIndex = Math.floor(Math.random() * eventsNames.length)
+                var eventIndex = Math.floor(Math.random() * properEvent.length)
 
                 if (arr.includes(eventIndex)) {} else {
                   arr.push(eventIndex);
@@ -342,7 +400,7 @@ $(function() {
               for (i in arr) {
                 index = arr[i]
 
-                currentEvent = eventsNames[index]
+                currentEvent = properEvent[index]
                 console.log(currentEvent)
 
 
@@ -441,7 +499,7 @@ $(function() {
     $('#event-space').empty();
 
     var strDate = $(this).data().time;
-    
+
     console.log(strDate);
     var date = moment(strDate).format("YYYY-MM-DD").toString();
     console.log(strDate);
