@@ -1,22 +1,31 @@
-.nav {
+/*nav {
+
   position: absolute;
   width: 100%;
   height: 50px;
-  /* background-color: rgba(50,50,50,.9) !important; */
+  /* background-color: rgba(50,50,50,.9) !important; 
    z-index: 10; 
-  /* .opacity(.3); */
+  /* .opacity(.3); 
 
- } 
+ } */
+
+ @import  url("../shocktherapybb_reg.otf");
+
 
  @font-face {
     font-family: titleFont;
-    src: url(assets/shocktherapybb_reg.otf);
+    src: url("../shocktherapybb_reg.otf") format("opentype");
 }
 
-  h3 {
+ .weatherTitle{
   display: inline;
   font-family: titleFont;
  }
+
+.cursorCustom {
+   cursor: url(../images/cursor.png), auto;
+}
+
 
 .footer .social-icons ul li a {
   background-color: rgba(0,0,0,.2);
@@ -48,6 +57,37 @@ html, body {
         margin: 0;
         padding: 0;
       }
+
+
+/*APIs*/
+
+/*Meetup*/
+.meetupEvent, .movie, .event {
+  border-style: solid;
+  border-width: 1.5px;
+  background-color: rgba(255,255,255,0.75);
+  margin-left: 5px;
+  margin-right: 5px;
+  left:30px;
+  color: rgb(25,25,25);
+}
+
+.meetupEvent {
+  bottom: 200px;
+}
+
+.event {
+  bottom: 430px;
+}
+
+.meetupEvent > .meetup-eventname, .event > .event-title, .movie > .movie-title {
+  font-weight: bold;
+  font-size: 18px;
+}
+
+/*Seatgeek*/
+
+
 
 /*Footer */
 
@@ -148,4 +188,3 @@ html, body {
 @-ms-viewport     { width: device-width; }
 @-o-viewport      { width: device-width; }
 @viewport         { width: device-width; }
-
