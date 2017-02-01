@@ -18,13 +18,16 @@ if ((windowWidth > 768) && ($('.carousel-caption').hasClass('pre-scrollable'))) 
 
 $(document).ready(function() {
 
+
+
+
   $('button').on('mouseover', function(event) {
 
 
     var classes = ['swing', 'wobble', 'jello'];
 
     var randomClass = Math.floor(Math.random() * classes.length);
-    console.log(classes[randomClass]);
+    // console.log(classes[randomClass]);
     var hello = classes[randomClass]
 
 
@@ -37,10 +40,10 @@ $(document).ready(function() {
     $(this).addClass('cursorCustom');
   });
 
-  console.log($('button'))
+  // console.log($('button'))
   setInterval(function(event) {
  $('button').on('mouseover', function(event) {
-
+  
       $('button').removeClass('swing')
        $('button').removeClass('wobble')
        $('button').removeClass('jello')
@@ -48,7 +51,7 @@ $(document).ready(function() {
     var classes = ['swing', 'wobble', 'jello'];
 
     var randomClass = Math.floor(Math.random() * classes.length);
-    console.log(classes[randomClass]);
+    // console.log(classes[randomClass]);
     var hello = classes[randomClass]
 
 
@@ -57,14 +60,23 @@ $(document).ready(function() {
       $(this).removeClass(`animated ${hello}`);
     }, 500)
 
+        $('button').on('click',  function(event) {
+          document.getElementById('audio1').play()
+          event.preventDefault();
+          /* Act on the event */
+        });
+
+
 
     $(this).addClass('cursorCustom');
   });
   }, 1000)
 
-
+// audio1
 
 });
+
+
 
 
 
@@ -148,7 +160,7 @@ $(function() {
 
     promise.catch(e => console.log(e.message));
     $('#btnSignUp').hide()
-    console.log('loggedin')
+    // console.log('loggedin')
     return false
 
   });
@@ -194,7 +206,7 @@ $(function() {
   firebase.auth().onAuthStateChanged(firebaseUser => {
     if (firebaseUser) {
       $('.info').show()
-      console.log(firebaseUser);
+      // console.log(firebaseUser);
       // console.log(firebaseUser.uid);
 
 
@@ -202,7 +214,7 @@ $(function() {
     } else {
 
       $('.info').hide()
-      console.log("not logged in");
+      // console.log("not logged in");
       btnLogout.classList.add('hide');
     }
 
@@ -228,7 +240,7 @@ $(function() {
       findLocation(zip)
     } else {
 
-      console.log('bad zip')
+      // console.log('bad zip')
     }
 
 
@@ -239,7 +251,7 @@ $(function() {
         url: `https://maps.googleapis.com/maps/api/geocode/json?address=${zip}&key=AIzaSyATHPPagioRnJR7xhCvEYBT2VVFUkE5ajY`,
       })
       .done(function(data) {
-        console.log(data)
+        // console.log(data)
 
 
         lat = data.results[0].geometry.bounds.northeast.lat,
@@ -253,7 +265,7 @@ $(function() {
         console.log("error");
       })
       .always(function() {
-        console.log("complete");
+        // console.log("complete");
       });
   }
 
@@ -267,7 +279,7 @@ $(function() {
       .done(function(data) {
 
 
-        console.log(data)
+        // console.log(data)
           // console.log(data.forecast.simpleforecast.forecastday.length);
 
         var arrWeathers = data.forecast.simpleforecast.forecastday;
@@ -301,11 +313,11 @@ $(function() {
 
           if (i <= 4) {
             date = `${arrWeathers[i].date.monthname_short } ${arrWeathers[i].date.day} ${arrWeathers[i].date.year}`
-            console.log(date)
+            // console.log(date)
             var yearDateMonth = `${arrWeathers[i].date.year}-${arrWeathers[i].date.month}-${arrWeathers[i].date.day}`;
 
             var weatherCondition = arrWeathers[i].conditions.toString().toLowerCase();
-            console.log(weatherCondition.toString().toLowerCase())
+            // console.log(weatherCondition.toString().toLowerCase())
             var imgsrc
             if (weatherCondition === 'clear') {
               imgsrc = `assets/images/medium/sun.png`
@@ -361,7 +373,7 @@ $(function() {
           theDay = $(this).data().day
           theDay = moment(theDay).format('x').toString()
 
-          console.log(theDay)
+          // console.log(theDay)
           _this = $(this)
 
           $.ajax({
@@ -381,7 +393,7 @@ $(function() {
                 }
 
               });
-              console.log(properEvent)
+              // console.log(properEvent)
 
 
               arr = [];
@@ -399,10 +411,10 @@ $(function() {
                 index = arr[i]
 
                 currentEvent = properEvent[index]
-                console.log(currentEvent)
+                // console.log(currentEvent)
 
 
-                $('#meetupsBtns').append(`<div class=' col-md-2 meetupEvent'>
+                $('#meetupsBtns').append(`<div class='  col-md-2 meetupEvent'>
                                          
                                          <p class="meetup-eventname"><a href="${currentEvent.event_url}" target="_blank" >${ currentEvent.name}</a></p>
                                          <p>Address: ${currentEvent.venue.address_1}</p>
@@ -416,7 +428,7 @@ $(function() {
 
             })
 
-          console.log(eventsNames)
+          // console.log(eventsNames)
 
 
         });
@@ -463,16 +475,16 @@ $(function() {
 
 
 
-        console.log(arrayOfmovies);
-        console.log(response);
+        // console.log(arrayOfmovies);
+        // console.log(response);
       }
       for (i in arrayOfmovies) {
 
 
         index = arrayOfmovies[i]
 
-        console.log(response.results[index].original_title);
-        console.log(response.results[index].overview);
+        // console.log(response.results[index].original_title);
+        // console.log(response.results[index].overview);
         var movieTitle = response.results[index].original_title;
         var movieDesc = response.results[index].overview;
 
@@ -498,10 +510,10 @@ $(function() {
 
     var strDate = $(this).data().time;
 
-    console.log(strDate);
+    // console.log(strDate);
     var date = moment(strDate).format("YYYY-MM-DD").toString();
-    console.log(strDate);
-    console.log(date);
+    // console.log(strDate);
+    // console.log(date);
 
     var settings = {
       "async": true,
@@ -511,19 +523,19 @@ $(function() {
     }
 
     $.ajax(settings).done(function(response) {
-      console.log(response);
+      // console.log(response);
 
       for (i = 0; i < 5; i++) {
         var eventTitle = response.events[i].short_title;
         var eventTime = moment(response.events[i].datetime_local).format("MM-DD-YYYY").toString();
         var eventUrl = response.events[i].url;
 
-        console.log(eventTitle);
-        console.log(eventTime);
-        console.log(eventUrl);
+        // console.log(eventTitle);
+        // console.log(eventTime);
+        // console.log(eventUrl);
 
         $('#event-space').append(`<div class="event col-md-2">
-                                      <p class="event-title"><a href="${eventUrl}">${eventTitle}</a></p>
+                                      <p class="event-title"><a href="${eventUrl}" target="_blank"  >${eventTitle}</a></p>
                                       <p>${eventTime}</p>
                                       </div>`);
       }
