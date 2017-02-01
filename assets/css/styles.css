@@ -22,6 +22,10 @@
   font-family: titleFont;
  }
 
+ .yellow {
+  color: yellow;
+ }
+
 .cursorCustom {
    cursor: url(../images/cursor.png), auto;
 }
