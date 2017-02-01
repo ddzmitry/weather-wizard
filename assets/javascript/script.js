@@ -314,24 +314,21 @@ $(function() {
               console.log(data)
               var events = data.results;
 
-              events.forEach(function(event) {
-
-                if (event.hasOwnProperty('venue')) {
-
-                  console.log(event)
-
-                  eventsNames.push(event)
-
-
-                }
-
-              });
+             var properEvent = events.filter(function(event) {
+              if (event.hasOwnProperty('venue')){
+                      if (event.venue.hasOwnProperty('address_1')) {
+                         return event;
+                      }
+              } 
+              
+             }); 
+                    console.log(properEvent)
 
 
               arr = [];
               while (arr.length < 5) {
 
-                var eventIndex = Math.floor(Math.random() * eventsNames.length)
+                var eventIndex = Math.floor(Math.random() * properEvent.length)
 
                 if (arr.includes(eventIndex)) {} else {
                   arr.push(eventIndex);
@@ -342,7 +339,7 @@ $(function() {
               for (i in arr) {
                 index = arr[i]
 
-                currentEvent = eventsNames[index]
+                currentEvent = properEvent[index]
                 console.log(currentEvent)
 
 
